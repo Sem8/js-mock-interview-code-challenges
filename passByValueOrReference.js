@@ -1,4 +1,4 @@
-var num = 10,
+let num = 10,
     name = "Addy Osmani",
     obj1 = {
       value: "first value"
@@ -18,7 +18,7 @@ function change(num, name, obj1, obj2) {
 change(num, name, obj1, obj2);
  
 console.log(num); // 10
-console.log(name);// "Addy Osmani"
-console.log(obj1.value);//"first value"
-console.log(obj2.value);//"new value"
-console.log(obj3.value);//"new value"
+console.log(name); // "Addy osmani"
+console.log(obj1.value); // "first value"
+console.log(obj2.value); // "new value"
+console.log(obj3.value); // "new value"
