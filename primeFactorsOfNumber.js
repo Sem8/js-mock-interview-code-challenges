@@ -1,10 +1,10 @@
 const primeFactor = (n) => {
-    let factors = [];
+    let factors = new Set();
     let divisor = 2;
 
     while(n > 2) {
         if (n % divisor == 0) {
-            factors.push(divisor);
+            factors.add(divisor);
             n = n / divisor;
         } else {
             divisor++
@@ -13,4 +13,4 @@ const primeFactor = (n) => {
     return factors;
 }
 
-console.log(primeFactor(8))
+console.log(primeFactor(68))
