@@ -25,8 +25,6 @@ const ifFirstArrayIsIncluded = (arr1, arr2) => {
 }
 
 
-
-
 arrOne = [1, 2, 3, 4, 5]; // target array
 arrTwo = [4, 5, 1, 2, 3, 9, 10]; // true
 arrThree = [4, 5, 8, 9, 10]; // false
