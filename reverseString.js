@@ -33,12 +33,20 @@
 // };
 
 // Reverse using built in methods:
-const reverseStr = str => {
-    if (!str || str.length < 2) return str;
-    
-    return str.split('').reverse().join('');
-}
+// const reverseStr = str => {
+//     if (!str || str.length < 2) return str;
 
+//     return str.split('').reverse().join('');
+// }
+
+
+// Make an extension of the string prototype for the reverse method:
+String.prototype.reverseStr = function() {
+    if (!this || this.length < 2) {
+        return this;
+    }
+    return this.split('').reverse().join('');
+}
 
 // Reverse string recursively
 // const reverseStr = (str) => {
@@ -49,4 +57,5 @@ const reverseStr = str => {
 // }
 
 
-console.log(reverseStr('string'));
+// console.log(reverseStr('string'));
+console.log('string'.reverseStr());
