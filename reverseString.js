@@ -9,14 +9,35 @@
 // }
 
 // Reverse string when string concatenation is not supported by a browser:
-const reverseStr = str => {
-    let revStrArr = [];
-    for (let i = str.length -1; i >=0; i--) {
-        revStrArr.push(str[i]);
-    }
-    return revStrArr.join('');
-}
+// const reverseStr = str => {
+//     let revStrArr = [];
+//     for (let i = str.length -1; i >=0; i--) {
+//         revStrArr.push(str[i]);
+//     }
+//     return revStrArr.join('');
+// }
 
+// Reverse string with time efficiency by halving the length for O(n/2) time complexity:
+// const reverseStr = str => {
+//     str = str.split('');
+//     let reversedString;
+//     let len = str.length
+//     let halfIndex = Math.floor(len / 2) - 1;
+
+//     for (let i = 0; i <= halfIndex; i++) {
+//         reversedString = str[len - i - 1];
+//         str[len - i - 1] = str[i];
+//         str[i] = reversedString;
+//     }
+//     return str.join('');
+// };
+
+// Reverse using built in methods:
+const reverseStr = str => {
+    if (!str || str.length < 2) return str;
+    
+    return str.split('').reverse().join('');
+}
 
 
 // Reverse string recursively
