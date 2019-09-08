@@ -1,16 +1,16 @@
 // Good enough solution
-// const removeDuplicate = (arr) => {
-//   let hashTable = {};
-//   let arrChecker = [];
+const removeDuplicate = (arr) => {
+  let hashTable = {};
+  let arrChecker = [];
 
-//   for (let i = 0; i < arr.length; i++) {
-//     if(!hashTable[arr[i]]) {
-//       arrChecker.push(arr[i]);
-//       hashTable[arr[i]] = true;
-//     }
-//   }
-//   return arrChecker;
-// }
+  for (let i = 0; i < arr.length; i++) {
+    if(!hashTable[arr[i]]) {
+      arrChecker.push(arr[i]);
+      hashTable[arr[i]] = true;
+    }
+  }
+  return arrChecker;
+}
 
 // For maximal performance:
 // const removeDuplicate = (arr) => {

@@ -1,9 +1,9 @@
 // check to see if all items from the first array are included in the second array
 
 // Solution using every() and includes() method
-// const ifFirstArrayIsIncluded = (arr1, arr2) => {
-//     return arr1.every(eachElem => arr2.includes(eachElem));
-// }
+const ifFirstArrayIsIncluded = (arr1, arr2) => {
+    return arr1.every(eachElem => arr2.includes(eachElem));
+}
 
 // Solution using every() and indexOf() method
 // const ifFirstArrayIsIncluded = (arr1, arr2) => {
