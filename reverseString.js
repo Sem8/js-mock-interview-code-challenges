@@ -1,12 +1,12 @@
 // Reverse string:
-// const reverseStr = str => {
-//     let reversedString = '';
+const reverseStr = str => {
+    let reversedString = '';
 
-//     for (let i = str.length -1; i >= 0; i--) {
-//         reversedString += str[i];
-//     }
-//     return reversedString;
-// }
+    for (let i = str.length -1; i >= 0; i--) {
+        reversedString += str[i];
+    }
+    return reversedString;
+}
 
 // Reverse string when string concatenation is not supported by a browser:
 // const reverseStr = str => {
@@ -41,12 +41,12 @@
 
 
 // Make an extension of the string prototype for the reverse method:
-String.prototype.reverseStr = function() {
-    if (!this || this.length < 2) {
-        return this;
-    }
-    return this.split('').reverse().join('');
-}
+// String.prototype.reverseStr = function() {
+//     if (!this || this.length < 2) {
+//         return this;
+//     }
+//     return this.split('').reverse().join('');
+// }
 
 // Reverse string recursively
 // const reverseStr = (str) => {
