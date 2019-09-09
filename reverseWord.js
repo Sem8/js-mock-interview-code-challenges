@@ -16,14 +16,20 @@
 // }
 
 // Simpler method using the array split built in method
-const reverseWords = sentence => {
-    let reversedSent = ' ';
-    let sentenceArr = sentence.split(' ');
+// const reverseWords = sentence => {
+//     let reversedSent = ' ';
+//     let sentenceArr = sentence.split(' ');
 
-    for (let i = sentenceArr.length - 1; i >= 0; i--) {
-        reversedSent += sentenceArr[i] + ' ';
-    }
-    return reversedSent;
+//     for (let i = sentenceArr.length - 1; i >= 0; i--) {
+//         reversedSent += sentenceArr[i] + ' ';
+//     }
+//     return reversedSent;
+// }
+
+// One liner code using reverse built in method:
+const reverseWords = sentence => {
+    return sentence.split(' ').reverse().join(' ');
 }
+
 
 console.log(reverseWords('This is word'));
