@@ -25,13 +25,27 @@
 // 2) if statement checks if a letter in the string is equal to the index and if the letter in the string at the next index does not exist
 // then return that letter
 
+// const findNonRepeatedCharacter = string => {
+//   for (let i = 0; i < string.length; i++) {
+//     if (string.indexOf(string[i]) == i && string.indexOf(string[i], i + 1) == -1) {
+//       return string[i];
+//     }
+//   }
+//   return null;
+// }
+
+// Solution using first and lastCharacter index logic
+// 1) Loop through the string to get each letter of the string
+// 2) If the firs index of a character with indexOf method equals the last index of a character with lastIndexOf method then it is a non-repeating 
+// letter so return that letter
+
 const findNonRepeatedCharacter = string => {
   for (let i = 0; i < string.length; i++) {
-    if (string.indexOf(string[i]) == i && string.indexOf(string[i], i + 1) == -1) {
+    if (string.indexOf(string[i]) === string.lastIndexOf(string[i])) {
       return string[i];
     }
   }
-  return null;
+  return null
 }
 
 console.log(findNonRepeatedCharacter('the quick brown fox jumps then quickly blow air'))
