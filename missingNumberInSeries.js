@@ -21,17 +21,35 @@
 // 4) In if statement check if number at current index + 1 minus number at current index is more than 1, if so:
 // 4) Push the number(s) at current index plus a 1 to that number into the missingNumArr array.
 // 5) return that missing number array or return with a join for list of numbers (it'll return in form of strings).
-const missingNumber = numArr => {
-    numArr.sort();
-    let missingNumArr = [];
+// const missingNumber = numArr => {
+//     numArr.sort();
+//     let missingNumArr = [];
     
-    for (let i = 0; i < numArr.length; i++) {
-        if (numArr[i + 1] - numArr[i] > 1) {
-            missingNumArr.push(numArr[i] + 1);            
+//     for (let i = 0; i < numArr.length; i++) {
+//         if (numArr[i + 1] - numArr[i] > 1) {
+//             missingNumArr.push(numArr[i] + 1);            
+//         }
+//     }
+//     return missingNumArr.join(', ');    
+// };
+
+// Solution using Math.max.apply:
+// 1) Find the highest and lowest numbers in the array with apply method from Math library.
+// 2) Initialize an empty array let's call it missingNumArr.
+// 2) loop through the  array, starting from lowest number from array and ending at highest number in the array.
+// 3) if a number at an index is missing, push that index into the missingNumArr array and return the array outside for loop  
+const missingNumber = numArr => {
+    let lowestNum = Math.min.apply(Math, numArr);
+    let highestNum = Math.max.apply(Math, numArr);
+    let missingNumArr = [];
+
+    for (let i = lowestNum; i < highestNum; i++) {
+        // console.log(i);
+        if (numArr.indexOf(i) < 0) {
+            missingNumArr.push(i);
         }
     }
-    return missingNumArr.join(', ');
-    
+    return missingNumArr;
 }
 
 numA = [5, 2, 6, 1, 3]; // 4
