@@ -25,7 +25,7 @@ const sumOfTwo = (numArr, theNum) => {
         if (hashTable[difference]) {
             sumArr.push(numArr[i], difference)
         } else {
-            hashTable[numArr[i]] = difference;
+            hashTable[numArr[i]] = difference ;
         }
     }
     // console.log(hashTable);
