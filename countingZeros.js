@@ -8,3 +8,4 @@ const countingZeros = num => {
 }
 
 console.log(countingZeros(100));
+
