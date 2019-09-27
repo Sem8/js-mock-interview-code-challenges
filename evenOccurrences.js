@@ -28,7 +28,9 @@
 //     return null;
 // }
 
-// Someone else's solution using forEach to loop through array.
+// Someone else's solution using forEach to loop through array and then loop through array again to find the element instead of looping
+// through the object with has no order of elements so an object won't find the first element in the array with even occurrence
+// necessarily.
 const evenOccurrence = arr => {
     let storage = {};
 
@@ -49,30 +51,3 @@ const evenOccurrence = arr => {
 // console.log(evenOccurrence([1, 2, 2, 3, 4, 4, 4, 4]));
 console.log(evenOccurrence([1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4]))
 
-
-
-
-
-
-
-// function evenOccurrence (array) {
-//     // Store counts
-//     var storage = {};
-  
-//     // Store each value within the storage object to keep count
-//     array.forEach(function(value, index) {
-//       storage[value] = storage[value] + 1 || 1;
-//     });
-  
-//     // loop through array to find first occurence of an even count
-//     for (var i = 0; i < array.length; i++) {
-//       var current = array[i];
-  
-//       if (storage[current] % 2 === 0) {
-//         return current;
-//       }
-//     }
-  
-//     // If no even occurrence found, return null
-//     return null;
-//   }
