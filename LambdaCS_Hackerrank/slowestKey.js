@@ -6,7 +6,7 @@ ex 2: [[0, 2], [1, 3], [0, 7]] --> a (because 7 - 3 = 4)
 ex 3: [[0, 1], [0, 3], [4, 5], [5, 6], [4, 10]] --> e (b/c 10 - 6 = 4 which is highest difference);
  */
 
- // console.log('z'.charCodeAt(0)); // returns the number from ascii character alphabet 'a' will return 97, z will return 122
+// console.log('z'.charCodeAt(0)); // returns the number from ascii character alphabet 'a' will return 97, z will return 122
 // console.log(String.fromCharCode(122)) // returns the letter alphabet from ascii character of 97 - 122 , 97 being a and 122 being z
 // a='abcdefghijklmnopqrstuvwxyz'.split('');
 // console.log(a[0]);
@@ -20,17 +20,17 @@ greater than max. If so, return alphabet array with index from the first element
  */
 
 const slowestKey = keyTimes => {
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    let maxim = keyTimes[0][1] - 0;
-    let slowestLetter = '';
+  let alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  let maxim = keyTimes[0][1] - 0;
+  let slowestLetter = alphabet[keyTimes[0][0]];
 
-    for (let i = 1; i < keyTimes.length; i++) {
-        if ((keyTimes[i][1] - keyTimes[i-1][1]) > maxim) {
-            maxim = keyTimes[i][1] - keyTimes[i-1][1];
-            slowestLetter = alphabet[keyTimes[i][0]];
-        }
+  for (let i = 1; i < keyTimes.length; i++) {
+    if (keyTimes[i][1] - keyTimes[i - 1][1] > maxim) {
+      maxim = keyTimes[i][1] - keyTimes[i - 1][1];
+      slowestLetter = alphabet[keyTimes[i][0]];
     }
-    return slowestLetter;
+  }
+  return slowestLetter;
 };
 
 console.log(slowestKey([[0, 2], [1, 5], [0, 9], [2, 15]])); // c
@@ -38,4 +38,3 @@ console.log(slowestKey([[0, 2], [1, 3], [0, 7]])); // a
 console.log(slowestKey([[0, 1], [0, 3], [4, 5], [5, 6], [4, 10]])); // e
 
 // slowestKey([[0, 2], [1, 5], [0, 9], [2, 15]])
-
