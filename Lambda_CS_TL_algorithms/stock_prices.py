@@ -1,3 +1,4 @@
+# My own solution: Stock prices to find maximum profit but you have to buy first before sell
 # '''Pseudocode: O(n^2) solution with nested for loop
 # 1. Initialize a variable called max profit and set it equal to the difference between 1st and 2nd element prices in the array.
 # 2. Loop through the array with index i starting at 0 and ending at 2nd to last element.
@@ -17,9 +18,33 @@
 #                 max_profit = arr[j] - arr[i]
 #     return max_profit
 
-'''Pseudocode: Solution with 1 for loop O(n) time complexity:
-1. 
+
+# My own solution for stock prices with O(2n) time complexity:
+'''Pseudocode: Solution with 1 for loop O(2n) = ~O(n) time complexity:
+1. Set variable called initial_buy to 1st array element
+2. set variable called initial_sell to 2nd array element
+3. Loop through the array starting from 1 all the way to end.
+4. Make if statement, check if current element at current index is more than initial_sell then reset initial_sell to that variable.
+5. Make another for loop outside the previous for loop (not nested inner for loop) starting at index 1 all the way to end of array.
+6. Make if statement inside the above 2nd for loop to check if current element at current index is less than initial_buy (from 1st array element)
+and that the index of this current element at current index is at a lower index than the index of the updated initial_sell value from the array.
+If so, reset initial_buy to this current array element at current index that meets this condition.
+7. Return the difference between the updated initial_sell minus initial_buy
 '''
+def stock_prices(arr):
+    initial_buy = arr[0]
+    initial_sell = arr[1]
+
+    for i in range(1, len(arr)):
+        if arr[i] > initial_sell:
+            initial_sell = arr[i]
+
+    for i in range(1, len(arr)):
+        if (arr[i] < initial_buy and arr.index(arr[i]) < arr.index(initial_sell)):
+            initial_buy = arr[i]
+    # print('initial_sell', initial_sell)
+    # print('initial_buy', initial_buy)
+    return initial_sell - initial_buy
 
 
 
