@@ -31,21 +31,42 @@ and that the index of this current element at current index is at a lower index 
 If so, reset initial_buy to this current array element at current index that meets this condition.
 7. Return the difference between the updated initial_sell minus initial_buy
 '''
+# def stock_prices(arr):
+#     initial_buy = arr[0]
+#     initial_sell = arr[1]
+
+#     for i in range(1, len(arr)):
+#         if arr[i] > initial_sell:
+#             initial_sell = arr[i]
+
+#     for i in range(1, len(arr)):
+#         if (arr[i] < initial_buy and arr.index(arr[i]) < arr.index(initial_sell)):
+#             initial_buy = arr[i]
+#     # print('initial_sell', initial_sell)
+#     # print('initial_buy', initial_buy)
+#     return initial_sell - initial_buy
+
+# Optimized solution with O(n) time complexity
+'''Pseudocode: Just 1 for loop
+1. Set variable called min_price to the first array elment
+2. Set variable called max_profit to the the 1st array element minus 2nd array element.
+3. Make for loop, starting at index 0 all the way to last element.
+4. Inside for loop, update max_profit value using max method by comparing initial max_profit value vs. the current price at current element minus
+min_price value from initial 1st array element. 
+5. Still inside for loop, update the min_price variable using min method comparing initial min_price from 1st array element vs. current array
+element at current index.
+6. Return max_profit.
+'''
+
 def stock_prices(arr):
-    initial_buy = arr[0]
-    initial_sell = arr[1]
+    min_price = arr[0]
+    max_profit = arr[1] - arr[0]
 
     for i in range(1, len(arr)):
-        if arr[i] > initial_sell:
-            initial_sell = arr[i]
+        max_profit = max(arr[i] - min_price, max_profit)
+        min_price = min(min_price, arr[i])
 
-    for i in range(1, len(arr)):
-        if (arr[i] < initial_buy and arr.index(arr[i]) < arr.index(initial_sell)):
-            initial_buy = arr[i]
-    # print('initial_sell', initial_sell)
-    # print('initial_buy', initial_buy)
-    return initial_sell - initial_buy
-
+    return max_profit
 
 
 print(stock_prices([10, 7, 5, 8, 11, 9])) # 6
