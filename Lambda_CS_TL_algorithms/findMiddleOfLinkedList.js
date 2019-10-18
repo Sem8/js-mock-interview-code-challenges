@@ -12,26 +12,38 @@ current.next. While loop will continue as long as linked list node is there and 
 7. return the node from the nodeList array at the middle index by doing nodeList[Math.floor(nodeList.length / 2)]
  */
 
-const findMiddleLinkedList = (sllHead) => {
-    let current = sllHead;
-    let count = 0;
-    let nodeList = [];
+// const findMiddleLinkedList = (sllHead) => {
+//     let current = sllHead;
+//     // let count = 0;
+//     let nodeList = [];
 
-    while (current != null) {
-        nodeList.push(current);
-        current = current.next;
-        count++;
-        // console.log(current.value, count);
-    };
-    // nodeList.forEach(eachNode => console.log(eachNode.value));
-    // console.log(count);
-    return nodeList[Math.ceil(nodeList.length / 2) - 1].value;
-};
+//     while (current != null) {
+//         nodeList.push(current);
+//         current = current.next;
+//         // count++;
+//         // console.log(current.value, count);
+//     };
+//     // nodeList.forEach(eachNode => console.log(eachNode.value));
+//     // console.log(count);
+//     return nodeList[Math.ceil(nodeList.length / 2) - 1].value;
+// };
 
 // Solution 2: O(n) time complexity, O(1) space complexity. Have 2 pointers, fast pointer jumps ahead by 2 nodes, slow pointer jumps ahead
 // by 1 node. When fast pointer reaches end, slow pointer will be at halfway point. Return the node slow pointer is at.
 /*Pseudocode:
  */
+
+const findMiddleLinkedList = (sllHead) => {
+    let fastPointer = sllHead;
+    let slowPointer = sllHead;
+
+    while (fastPointer.next != null && fastPointer.next.next != null) {        
+        fastPointer = fastPointer.next.next; 
+        slowPointer = slowPointer.next;       
+    };
+
+    return slowPointer.value;
+};
 
 class ListNode {
     constructor(value) {
@@ -76,6 +88,7 @@ a3.next = b3;
 b3.next = c3;
 c3.next = d3;
 d3.next = e3;
+// e3.next = null;
 
 
 
