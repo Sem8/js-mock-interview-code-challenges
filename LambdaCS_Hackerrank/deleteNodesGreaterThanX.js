@@ -65,10 +65,8 @@ const deleteNodesGreaterThanX = (head, x) => {
             // console.log(current.next.value);            
         } else {            
             current = current.next;
-        };
-                
+        };                
     };
-
     
     return newHead.value;
 };
