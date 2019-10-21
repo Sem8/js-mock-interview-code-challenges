@@ -24,6 +24,16 @@ const reverseLinkedList = sllHead => {
     return sllHead.value;    
 }
 
+// Function to print the list
+const printList = (sllHead) => {
+    let current = sllHead;
+    
+    while(current) {
+        console.log(current.value);
+        current = current.next;
+    }
+};
+
 
 class ListNode {
     constructor(value) {
@@ -72,6 +82,9 @@ d3.next = e3;
 
 
 
-console.log(reverseLinkedList(a1)); // 1;
-console.log(reverseLinkedList(a2)); // 10;
+// console.log(reverseLinkedList(a1)); // 1;
+// console.log(reverseLinkedList(a2)); // 10;
 console.log(reverseLinkedList(a3)); // 5;
+// printList(a1);
+// printList(a2);
+printList(e3);
