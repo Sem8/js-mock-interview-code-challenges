@@ -9,38 +9,52 @@ a pointer for the node right after current
 6. Set prev equal to current so that the (previous) prev pointer now points to the current node.   
  */
 const reverseLinkedList = sllHead => {
-    let prev = null;
-    let current = sllHead;
-    let nextToCurrent;
+  let prev = null;
+  let current = sllHead;
+  let nextToCurrent;
 
-    while (current) {
-        nextToCurrent = current.next;
-        current.next = prev;
-        prev = current;
-        current = nextToCurrent;
-    };
+  while (current) {
+    nextToCurrent = current.next;
+    current.next = prev;
+    prev = current;
+    current = nextToCurrent;
+  }
 
-    sllHead = prev;
-    return sllHead.value;    
-}
-
-// Function to print the list
-const printList = (sllHead) => {
-    let current = sllHead;
-    
-    while(current) {
-        console.log(current.value);
-        current = current.next;
-    }
+  sllHead = prev;
+  return sllHead.value;
 };
 
+// Function to print the linked list
+// const printList = sllHead => {
+//   let current = sllHead;
+
+//   while (current) {
+//     console.log(current.value);
+//     current = current.next;
+//   }
+// };
+
+// Function to print the linked list recursively
+const printListRecursive = sllHead => {
+  let current = sllHead;
+  console.log(current.value);
+  current = current.next;
+
+  // base case: if current becomes null exit the function to end the recursive call
+  // otherwise recursively call the function
+  if (current == null) {
+    return;
+  } else {
+    printListRecursive(current);
+  }
+};
 
 class ListNode {
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-    }
-};
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
 
 let a1 = new ListNode(7);
 let b1 = new ListNode(3);
@@ -80,11 +94,10 @@ c3.next = d3;
 d3.next = e3;
 // e3.next = null;
 
-
-
 // console.log(reverseLinkedList(a1)); // 1;
 // console.log(reverseLinkedList(a2)); // 10;
-console.log(reverseLinkedList(a3)); // 5;
+// console.log(reverseLinkedList(a3)); // 5;
 // printList(a1);
 // printList(a2);
-printList(e3);
+// printList(a3);
+printListRecursive(a3);
