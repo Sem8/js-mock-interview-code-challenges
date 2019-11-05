@@ -24,7 +24,7 @@ class Stack():
     def size(self):
         return len(self.stack)
 
-''' BFT pseudocode:
+''' BFT PSEUDOCODE:
 create a queue from Queue class
 Enqueue the starting vertex into the queue class 
 Create an empty set, call it visited
@@ -34,6 +34,17 @@ Make a while loop of while queue is not empty then:
     Loop through all the neighbor vertices of that dequed vertex (that was dequeud from front of queue) with for in loop
     Add all those neighber vertices into the back of the queue (for them to be put in the visited set and their neighbors to be put in the queue
     later on)
+'''
+
+''' DFT PSEUDOCODE:
+Create a stack from Stack class
+Push the starting vertex into the (back of the) stack
+Initialize an empty set, call it visited
+Make a while loop of while stack is not empty:
+    pop the last vertex from the stack and set it to a variable called get_vertex
+    check if get_vertex is not in visted set then print the get_vertex vertex and add it to the visited set
+    Loop through the neighbor vertices of the last element popped off from the stack (get_vertex) with for in loop.
+    Add all the neighbor vertices to the end of the stack (for the last elements to be traversed first and visited and printed)
 '''
 
 '''
@@ -68,7 +79,21 @@ Takes in starting_vertex as a parameter.
 6. Make an if statement of if get_vertex is not in visited set then print the get_vertex and add it to the visited set.
 7. Now traverse throug the rest of the neighber vertices in the get_vertex with a for in loop and add those neighbor vertices at the back of the 
 queue. While loop will continue as long as queue has elements in it. First element will keep getting taken off the queue and get added to the 
-visited set until all elements are printed and added to the visited set. 
+visited set until all elements are printed and added to the visited set.
+
+dft method:
+Takes in starting_vertex as a parameter.
+1. Initialize an Stack() call it stack.
+2. Push the starting_vertx into the back of the stack
+3. Initialize an empty set, call it visited
+4. Make a while loop of while stack size is more than 0 (stack is not empty)
+5. Inside while loop, pop off the last element from stack and set it to a variable called get_vertex
+6. Make an if statement, check if get_vertex is not in visited set then print get_vertex and add it to the visited set.
+7. Inside previous if statement, loop through each neighbor vertex of the get_vertex vertex from the self.vertices dictionary which contains the
+get_vertex as key with it's neighber vertices as values in a set. This is done with a for in loop and inside the for in loop, add 
+each of those neighbor vertices into the back of the stack. This will pop off each neighbor vertex then add it to the visited set if not visited
+already and print it and then add it's neighbor vertices into the back of the stack and explore that 3rd neighbor to add to visited and traverse
+etc.
 '''
 
 
@@ -106,6 +131,19 @@ class Graph:
                 for neighbor_vertex in self.vertices[get_vertex]:
                     que.enqueue(neighbor_vertex)
 
+    def dft(self, starting_vertex):
+        stack = Stack()
+        stack.push(starting_vertex)
+        visited = set()
+
+        while stack.size() > 0:
+            get_vertex = stack.pop()
+            if get_vertex not in visited:
+                print(get_vertex)
+                visited.add(get_vertex)
+                for neighbor_vertex in self.vertices[get_vertex]:
+                    stack.push(neighbor_vertex)
+
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
@@ -141,7 +179,7 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    # graph.dft(1)
+    graph.dft(1)
     
     '''
     Valid BFT paths:
@@ -158,7 +196,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    print(graph.bft(1))
+    # print(graph.bft(1))
     
     '''
     Valid DFT recursive paths:
