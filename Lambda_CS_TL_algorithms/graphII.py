@@ -79,7 +79,25 @@ with a for in loop, name the neighbor vertices neighbor_vertex
 11. Add the copied path, path_copy into the back of the q by enqueing. While loop will continue till all last elements are in visited or a 
 destination_vertex equals the last vertex from path.
 12. Otherwise, outside while loop, return None
+'''
 
+'''DFS with path pseudocode:
+1. Will take in starting_vertex and destination_vertex as input parameters
+2. Create an empty set, call it visited
+3. Instantiate a stack object from Stack class
+4. Push the starting_vertex into the back of the stack as a list
+5. Make a while loop of while stack is not empty (length or size of stack is more than 0)
+6. Inside while loop, pop off the last list from the stack and set it to a variable called path
+7. Get the last vertex element from the path and call it get_vertex
+8. Make an if statement, check if last vertex element, get_vertex from path list is not in visited
+9. Inside previous if statement, make another if statement, check if last vertex element from path list (get_vertex) is equal to destination vertex
+then return path list
+10. Otherwise (if last vertex element from path list is not destination_vertex) then add get_vertex into visited set. 
+11. Again if last vertex element from path list is not destination_vertex then loop through neighbor vertices of last vertex element from path list
+(get_vertex) with for in loop, and name each neigbor vertices neighbor_vertex
+12. Inside the for-in loop, make a copy of the path list, call it path_copy then append each neighbor_vertex into each path_copy list.
+13. Push each path_copy list for each neighbor into the back of the stack. While loop will continue until we find a vertex that is the
+destination_vertex or if none is found then return None ouside the while loop.
 '''
 
 class Graph:
@@ -170,6 +188,27 @@ class Graph:
 
         return None
 
+    def dfs(self, starting_vertex, destination_vertex):
+        visited = set()
+        stack = Stack()
+        stack.push([starting_vertex])
+
+        while stack.size() > 0:
+            path = stack.pop()
+            get_vertex = path[-1]
+
+            if get_vertex not in visited:
+                if get_vertex == destination_vertex:
+                    return path
+
+                visited.add(get_vertex)
+
+                for neighbor_vertex in self.vertices[get_vertex]:
+                    path_copy = list(path)
+                    path_copy.append(neighbor_vertex)
+                    stack.push(path_copy)
+        return None
+
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
@@ -237,11 +276,11 @@ if __name__ == '__main__':
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-    print(graph.bfs(1, 6))
+    # print(graph.bfs(1, 6))
     
     '''
     Valid DFS paths:
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
-    # print(graph.dfs(1, 6))
+    print(graph.dfs(1, 6))
