@@ -149,6 +149,33 @@ node and so on
 5. Then print the value of starting_node  
 '''
 
+''' bft_print method:
+1. Will take in starting_node as an input parameter.
+2. Instantiate a new que object from Queue class constructor
+3. push the starting_node into the que 
+4. Make a while loop of while que is not empty (length of que is more than 0):
+5. Inside while loop, remove the first node from the queue list using deque() method that was made in the Queue class and call it get_node
+6. Print the value of the first node that was dequeed from the que list (get_node.value)  
+7. Make an if statement, check if there are nodes on left of the first node that was dequed off the que list and if so enque that left node
+into the back of the queue
+8. Outside previous if statement, make another if statement, check if nodes on the right of the first node that was dequed off the que list
+exists. If so then enque that node from the right onto the back of the queue. 
+while loop will continue for as long as there are nodes on both sides.
+'''
+
+''' dft_print method:
+1. Will take in starting_node as an input parameter
+2. Instantiate a new stack object from Stack class
+3. Push the starting_node into the back of the stack using push method
+4. While stack is not empty (length of stack is more than 0):
+5. Pop the last node from the stack using pop method and save it into a variable, call it get_node
+6. Print value of the last node popped off from the stack (get_node.value)
+7. Make an if statement, check if node left of that last popped off node from stack (get_node.left) exists and if so, then push that left
+node to the back of the stack
+8. Outside previous if statement, make another if statement, check if node right of that last popped off node from stack (get_node.right)
+exists and if so then push that right node to the back of the stack
+'''
+
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -261,36 +288,60 @@ class BinarySearchTree:
         print(starting_node.value)
 
     def bft_print(self, starting_node):
+        que = Queue()
+        que.enqueue(starting_node)
 
-# bst = BinarySearchTree(1)
+        while que.size() > 0:
+            get_node = que.dequeue()
+            print(get_node.value)
 
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+            if get_node.left:
+                que.enqueue(get_node.left)
+            if get_node.right:
+                que.enqueue(get_node.right)
 
-bst = BinarySearchTree(8)
+    def dft_print(self, starting_node):
+        stack = Stack()
+        stack.push(starting_node)
 
+        while stack.size() > 0:
+            get_node = stack.pop()
+            print(get_node.value)
+
+            if get_node.left:
+                stack.push(get_node.left)
+            if get_node.right:
+                stack.push(get_node.right)
+
+bst = BinarySearchTree(1)
+
+bst.insert(8)
 bst.insert(5)
-bst.insert(14)
-bst.insert(4)
-bst.insert(6)
 bst.insert(7)
-bst.insert(11)
-bst.insert(20)
-bst.insert(9)
-bst.insert(10)
-bst.insert(18)
-bst.insert(23)
-bst.insert(12)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
+
+# bst = BinarySearchTree(8)
+
+# bst.insert(5)
+# bst.insert(14)
+# bst.insert(4)
+# bst.insert(6)
+# bst.insert(7)
+# bst.insert(11)
+# bst.insert(20)
+# bst.insert(9)
+# bst.insert(10)
+# bst.insert(18)
+# bst.insert(23)
+# bst.insert(12)
 
 
 
 bst.bft_print(bst)
-bst.dft_print(bst)
+# bst.dft_print(bst)
 
 print("elegant methods")
 print("pre order")
