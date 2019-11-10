@@ -67,6 +67,20 @@ the for_each_recursive method on the node right of current node at self.right an
 function's parameter. 
 '''
 
+''' iterative_depth_first_for_each method:
+1. Takes in callback as an input parameter which will be a callback function that'll run the input callback function for each node in 
+binary search tree in depth-first order. 
+2. Initialize an empty list (array), call it stack
+3. Apppend the first root node (self) to the back of the stack list using .append() method for list
+4. while the stack is not empty (len(stack) is more than 0):
+5. Pop the last node from the back of the stack using .pop() list method and set it to a variable get_node
+6. Make an if statement, check if a node on left of current get_node exists then append the node on left of current get_node to the stack
+7. Make another if statement outside previous if statement, check if a node on right of current get_node exists then append the node on 
+right of current get_node to the stack. 
+8. Outside both if statements, call the input callback function passing in current value of current node with self.value into the callback
+function as the parameter
+'''
+
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -131,6 +145,20 @@ class BinarySearchTree:
             self.left.for_each_recursive(callback)
         if self.right:
             self.right.for_each_recursive(callback)
+
+    def iterative_depth_first_for_each(self, callback):
+        stack = []
+        stack.append(self)
+
+        while len(stack) > 0:
+            get_node = stack.pop()
+
+            if get_node.left:
+                stack.append(get_node.left)
+            if get_node.right:
+                stack.append(get_node.right)
+            callback(get_node.value)
+            
 
                 
 bst = BinarySearchTree(1)
