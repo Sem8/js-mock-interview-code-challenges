@@ -1,3 +1,29 @@
+class Queue():
+    def __init__(self):
+        self.queue = []
+    def enqueue(self, value):
+        self.queue.append(value)
+    def dequeue(self):
+        if self.size() > 0:
+            return self.queue.pop(0)
+        else:
+            return None
+    def size(self):
+        return len(self.queue)
+
+class Stack():
+    def __init__(self):
+        self.stack = []
+    def push(self, value):
+        self.stack.append(value)
+    def pop(self):
+        if self.size() > 0:
+            return self.stack.pop()
+        else:
+            return None
+    def size(self):
+        return len(self.stack)
+
 ''' Binary search tree pseudocode
 1. Make a binary search tree class and have value as a parameter in the init function
 2. Declare self.value and set it to value
@@ -81,6 +107,48 @@ right of current get_node to the stack.
 function as the parameter
 '''
 
+''' breadth_first_for_each method:
+1. Takes in callback as an input parameter which will be a callback function that'll run the input callback function for each node in binary
+search tree in breadth-first order.
+2. Initialize an empty list call it que
+3. Append the first root node (self) into the back of the que list using .append() method.
+4. Make a while loop of while que is not empty, so que list length is more than 0
+5. Inside while loop, pop off the first node from the front of the que with .pop(0) method and set it to a variable get_node
+6. Make an if statement of if node left of first popped off node of get_node is present then append that node on left side into the back of
+the que using .append() method.
+7. Outside previous if statment, check if node on right side of first popped off node from que (get_node) exists then append that node on
+right side of get_node onto the back of que list using .append method
+8. Outside both if statements call the callback function on the value of the first popped off node from que (get_node)
+'''
+
+''' pre_order_dft method:
+1. Will take in a starting_node as an input parameter. Supposed to print all nodes on left side first in depth first manner then right side
+2. Make a base case of if there are no more nodes (so node doesn't exist) then just return to end the function.
+3. Otherwise (if node does exist) print the value of the starting_node.
+4. Then recursively call the pre_order_dft method on the left side of starting_node first then on the right side of starting_node 
+'''
+
+''' in_order_dft method:
+1. will take in a starting_node as an input parameter. Supposed to print starting node first, then last child node on left side, it's parent
+node then sibling node then move up to it's grandparent node then the last child of the grandparent node on the right side and then up one
+more level and so on
+2. Make a base case of if there are no more starting_node left so starting_node is None then just return to end the function
+3. Otherwise, (if starting_node does exist) then recursively call the in_order_dft method on left nodes of the starting node. 
+4. Then print the value of starting_node 
+5. Then recursively call the in_order_dft method on the right side of the starting_node (pass in right side of the starting node into the 
+recursive function)
+'''
+
+''' post_order_dft method:
+1. Will take in a starting_node as an input parameter. Will print out all the last child nodes first starting from left then go up one and 
+if there are additional child nodes from that node that's one level up on the right side it'll print out the very last child node from that
+node and so on
+2. Make a base case of if starting_node is non-existent which means we've reached the very last node then just return to end the function.
+3. Otherwise (if the starting_node exists) then recursively call the post_order dft on the left side of starting_node.
+4. Then recursively call the post_order_dft method on the right side of starting_node.
+5. Then print the value of starting_node  
+'''
+
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -111,11 +179,11 @@ class BinarySearchTree:
                 return False
             else:
                 return self.left.contains(target_value)
-        elif target_value > target_value:
+        elif target_value > self.right:
             if not self.right:
                 return False
             else:
-                self.right.contains(target_value)
+                return self.right.contains(target_value)
 
     def get_max_recursive(self):
         if not self:
@@ -158,18 +226,66 @@ class BinarySearchTree:
             if get_node.right:
                 stack.append(get_node.right)
             callback(get_node.value)
-            
 
-                
-bst = BinarySearchTree(1)
+    def breadth_first_for_each(self, callback):
+        que = []
+        que.append(self)
 
-bst.insert(8)
+        while len(que) > 0:
+            get_node = que.pop(0)
+            if get_node.left:
+                que.append(get_node.left)
+            if get_node.right:
+                que.append(get_node.right)
+            callback(get_node.value)
+
+    def pre_order_dft(self, starting_node):
+        if starting_node is None:
+            return
+        print(starting_node.value)
+        self.pre_order_dft(starting_node.left)
+        self.pre_order_dft(starting_node.right)
+
+    def in_order_dft(self, starting_node):
+        if starting_node is None:
+            return
+        self.in_order_dft(starting_node.left)
+        print(starting_node.value)
+        self.in_order_dft(starting_node.right)
+
+    def post_order_dft(self, starting_node):
+        if starting_node is None:
+            return
+        self.post_order_dft(starting_node.left)
+        self.post_order_dft(starting_node.right)
+        print(starting_node.value)
+
+    def bft_print(self, starting_node):
+
+# bst = BinarySearchTree(1)
+
+# bst.insert(8)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
+
+bst = BinarySearchTree(8)
+
 bst.insert(5)
-bst.insert(7)
-bst.insert(6)
-bst.insert(3)
+bst.insert(14)
 bst.insert(4)
-bst.insert(2)
+bst.insert(6)
+bst.insert(7)
+bst.insert(11)
+bst.insert(20)
+bst.insert(9)
+bst.insert(10)
+bst.insert(18)
+bst.insert(23)
+bst.insert(12)
 
 
 
@@ -179,7 +295,7 @@ bst.dft_print(bst)
 print("elegant methods")
 print("pre order")
 bst.pre_order_dft(bst)
-print("in order")
-bst.in_order_dft(bst)
-print("post order")
-bst.post_order_dft(bst)
+# print("in order")
+# bst.in_order_dft(bst)
+# print("post order")
+# bst.post_order_dft(bst)
