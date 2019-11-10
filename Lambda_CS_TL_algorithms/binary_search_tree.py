@@ -57,6 +57,16 @@ right side nodes until there are no more nodes on right side.
 6. Outside while loop, return the latest re-set max_value
 '''
 
+''' for_each_recursive method: 
+1. Takes in callback as an input parameter which will be the callback function that will call the current node from binary search tree
+2. Use the input callback function and pass in the current node's value (self.value) into that callback function. This will be the base case
+3. Make an if statement, check if node left of current node at self.left exists then recursively call the for_each_recursive function method
+on the left side of current node at self.left and pass in the callback function into the function parameter
+4. Make another if statement outside previous if statement, check if node right of current node at self.right exists then recursively call 
+the for_each_recursive method on the node right of current node at self.right and pass in the input callback function into the recursive
+function's parameter. 
+'''
+
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -112,6 +122,15 @@ class BinarySearchTree:
             current = current.right
 
         return max_value
+
+    def for_each_recursive(self, callback):
+        # base case
+        callback(self.value)
+
+        if self.left:
+            self.left.for_each_recursive(callback)
+        if self.right:
+            self.right.for_each_recursive(callback)
 
                 
 bst = BinarySearchTree(1)
