@@ -191,6 +191,7 @@ class Graph:
     def dfs(self, starting_vertex, destination_vertex):
         visited = set()
         stack = Stack()
+
         stack.push([starting_vertex])
 
         while stack.size() > 0:
@@ -200,7 +201,6 @@ class Graph:
             if get_vertex not in visited:
                 if get_vertex == destination_vertex:
                     return path
-
                 visited.add(get_vertex)
 
                 for neighbor_vertex in self.vertices[get_vertex]:
@@ -208,6 +208,7 @@ class Graph:
                     path_copy.append(neighbor_vertex)
                     stack.push(path_copy)
         return None
+
 
 
 if __name__ == '__main__':
@@ -284,3 +285,42 @@ if __name__ == '__main__':
         [1, 2, 4, 7, 6]
     '''
     print(graph.dfs(1, 6))
+
+''' BFS path pseudocode:
+Takes in starting_vertex and destination_vertex as function parameters.
+Declare an empty set called visited.
+Instantiate a q object from Queue class
+Enque or add to back of q, the starting_vertex as a list (array)
+While q is not empty (q size or length is more than 0):
+    Dequeue or remove from front, the first array from the q and set it to a variable called path
+    Get the last element from the path and call it get_vertex
+    Check if get_vertex (last element from path list) is not in visited, 
+        Check if get_vertex (last element from path list) is equal to destination vertex then return path. Otherwise,
+        add get_vertex to the visited set
+        Loop through each neighbor vertex of get_vertex (last vertex from path) with for in loop:
+            Make a copy of the old path and set it to a variable called path_copy
+            append each neighbor vertex into the newly copied path (path_copy)
+            Add to the back of the q with enqueue method, the newly copied path_copy (while loop continues looking at the last vertex 
+            from the first path)
+Return None if no vertex matching the destination_vertex is found
+'''
+
+''' DFS path pseudocode:
+Takes in starting_vertex and destination_vertex as parameters
+Initialize an empty set, call it visited
+Instantiate a new stack object from the Stack class
+Push the starting_vertex as an array into the back of the stack
+While stack is not empty (size or length of stack is more than 0):
+    Pop off the last list (array) from the stack and set it to a variable called path
+    Get the last element from the path call it get_vertex
+    Check if get_vertex (last element from stack) is not in visited:
+        check if get_vertex (last element from stack) is the destination_vertex then return path. Otherwise
+        add the get_vertex (last element from stack) to the visited set
+        Loop through each neighbor vertex of get_vertex (last vertex from stack) w/ for in loop, call each neighbor vertices neighbor_vertex
+            Make a copy of the path array and call the copy path_copy
+            append each neighbor vertex to the newly copied path_copy array
+            Push the newly copied lists, path_copy to the back of the stack
+Return None if destination_vertex is not found in path
+
+
+'''

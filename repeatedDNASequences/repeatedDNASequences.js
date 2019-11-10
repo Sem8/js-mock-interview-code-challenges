@@ -43,34 +43,21 @@ of substring current key in hashtable is more than 1 then push that key into the
 //     return finalArr;
 // };
 
-// My own optimized solution:
+// My own optimized solution: Time complexity O(2n) --> ~O(n), space complexity O(n)
 const findRepeatedDnaSequences = function(s) {
-    let testArr = [];
     let finalArr = [];
     let hashTable = {};
+    let sLength = s.length - 9;
+    let sequences;
 
-    for (let i = 0; i < s.length - 9; i++) {
-        // testArr.push(s.substr(i, 10));
-        if (s.substr(i, 10) in hashTable) {
-            hashTable[s.substr(i, 10)]++;
+    for (let i = 0; i < sLength; i++) {
+        sequences = s.substr(i, 10)
+        if (sequences in hashTable) {
+            hashTable[sequences]++;
         } else {
-            hashTable[s.substr(i, 10)] = 1;
-        };
-        
+            hashTable[sequences] = 1;
+        };        
     };
-    // console.log(testArr);
-    // for (let i = 0; i < testArr.length; i++) {
-    //     if (testArr[i] in hashTable) {
-    //         hashTable[testArr[i]]++;
-    //     } else {
-    //         hashTable[testArr[i]] = 1;
-    //     }
-        
-    // };
-    // console.log(hashTable);
-    // console.log('hashtable length: ', Object.keys(hashTable).length);
-    // console.log('testArr length: ', testArr.length);
-
     for (substrings in hashTable) {
         if (hashTable[substrings] > 1) {
             finalArr.push(substrings);

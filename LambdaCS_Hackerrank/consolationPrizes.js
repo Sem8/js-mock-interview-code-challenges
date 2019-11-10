@@ -5,6 +5,8 @@ The function accepts following parameters:
 
 Return how many students pass the cutoff mark. If 2 students get the same mark they get the same ranking. 
  */
+
+// My own solution:
 /*Pseudocode:
 1. Sort the list descending (high to low)
 2. Initialize a variable called rank and set it to 1.
@@ -70,4 +72,46 @@ console.log(numofPrizes(0, [1, 2, 3, 4, 5])); // 0
 console.log(numofPrizes(4, [])); // 0
 console.log(numofPrizes(2, [0, 0, 0])); // 0
 
+// Michael Bundick Solution:
+// arr = [90, 5, 0, 0, 0, 80, 100]
+// k = 5
 
+// arr = sorted(arr)[::-1]
+// final = arr_rev[:k]
+
+// while (k < len(arr)) and (final[-1] == arr[k]):
+//   final.append(arr[k])
+//   k += 1
+
+// print(len(list(filter(lambda x: x  != 0, final))))
+
+// David Pok Solution:
+// function numofPrizes(k, marks) {
+//     // Write your code here
+//     let place = 1;
+//     let temp = 0;
+//     let prized = [1];
+//     const sorted = marks.sort((a, b) => a - b);
+//     const reversed = sorted.reverse();
+
+//     for (let i = 1; i < reversed.length; i++) {
+//         if (reversed[i] == reversed[i - 1]) {
+//             prized.push(place);
+//         }
+//         else {
+//             place++
+//             temp = Math.max(place, i + 1);
+//             if (place < temp) {
+//                 place = temp;
+//             }
+//             prized.push(place)
+//         }
+//     }
+//     let sum = 0;
+//     for (let i = prized.length - 1; i >= 0; i--) {
+//         if (prized[i] <= k) {
+//             sum ++
+//         }
+//     }
+//     return sum;
+// }
