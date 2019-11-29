@@ -34,24 +34,22 @@ const flattenDictionary = dict => {
   let finalObj = {};
 
   for (let objKey in dict) {
-   
-
     if (isObjectHelper(dict[objKey]) == true) {
-
       let recursedInnerObj = flattenDictionary(dict[objKey]);
 
       for (let nestedKey in recursedInnerObj) {
-        if (nestedKey === '') {
-            finalObj[`${objKey}`] = recursedInnerObj[nestedKey];        
+        if (nestedKey === "") {
+          finalObj[`${objKey}`] = recursedInnerObj[nestedKey];
         } else {
-            finalObj[`${objKey}.${nestedKey}`] = recursedInnerObj[nestedKey];
-        }
-        
-      }
+          finalObj[`${objKey}.${nestedKey}`] = recursedInnerObj[nestedKey];
+        };
+      };
+
     } else {
       finalObj[objKey] = dict[objKey];
-    }
-  }
+    };
+  };
+  
   return finalObj;
 };
 
@@ -72,8 +70,9 @@ let inputDict = {
 };
 
 let inputDictII = {
-    "":{"a":"1"},"b":"3"
-}
+  "": { a: "1" },
+  b: "3"
+};
 
 console.log(flattenDictionary(inputDict));
 console.log(flattenDictionary(inputDictII));

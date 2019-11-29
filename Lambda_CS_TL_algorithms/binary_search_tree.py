@@ -313,6 +313,9 @@ class BinarySearchTree:
             if get_node.right:
                 stack.push(get_node.right)
 
+    def print_callback(self, inputVal):
+        print(inputVal)
+
 bst = BinarySearchTree(1)
 
 bst.insert(8)
@@ -340,12 +343,14 @@ bst.insert(2)
 
 
 
-bst.bft_print(bst)
+# bst.bft_print(bst)
 # bst.dft_print(bst)
 
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft(bst)
+# bst.iterative_depth_first_for_each(bst.print_callback)
+
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft(bst)
 # print("in order")
 # bst.in_order_dft(bst)
 # print("post order")
