@@ -89,29 +89,71 @@ const flattenDictionary = dict => {
   return finalObj;
 };
 
-/* Pramp suggested solution:
-function flattenDictionary(dict):
-    flatDictionary = {}
-    flattenDictionaryHelper("", dict, flatDictionary)
+// Pramp suggested solution: It's in partial Javascript and partial Python :-/
+// function flattenDictionary(dict):
+//     flatDictionary = {}
+//     flattenDictionaryHelper("", dict, flatDictionary)
 
-    return flatDictionary
+//     return flatDictionary
 
 
-function flattenDictionaryHelper(initialKey, dict, flatDictionary):
-    for (key : dict.keyset()):
-        value = dict.get(key)
+// function flattenDictionaryHelper(initialKey, dict, flatDictionary):
+//     for (key : dict.keyset()):
+//         value = dict.get(key)
 
-        if (!isDictionary(value)): # the value is of a primitive type
-            if (initialKey == null || initialKey == ""):
-                flatDictionary.put(key, value)
-            else:
-                flatDictionary.put(initialKey + "." + key, value)
-        else:
-            if (initialKey == null || initialKey == "")
-                flattenDictionaryHelper(key, value, flatDictionary)
-            else:
-                flattenDictionaryHelper(initialKey + "." + key, value, flatDictionary)
- */
+//         if (!isDictionary(value)): // the value is of a primitive type
+//             if (initialKey == null || initialKey == ""):
+//                 flatDictionary.put(key, value)
+//             else:
+//                 flatDictionary.put(initialKey + "." + key, value)
+//         else:
+//             if (initialKey == null || initialKey == "")
+//                 flattenDictionaryHelper(key, value, flatDictionary)
+//             else:
+//                 flattenDictionaryHelper(initialKey + "." + key, value, flatDictionary)
+
+// StackOverflow solution: 
+// const flatten = (obj, prefix = '', res = {}) => 
+//   Object.entries(obj).reduce((r, [key, val]) => {
+//     const k = `${prefix}${key}`
+//     if(typeof val === 'object'){ 
+//       flatten(val, `${k}.`, r)
+//     } else {
+//       res[k] = val
+//     }
+//     return r
+//   }, res);
+
+// coderwall solution:
+// var merge = function(objects) {
+//     var out = {};
+  
+//     for (var i = 0; i < objects.length; i++) {
+//       for (var p in objects[i]) {
+//         out[p] = objects[i][p];
+//       }
+//     }
+  
+//     return out;
+//   };
+
+// var flatten = function(obj, name, stem) {
+//     var out = {};
+//     var newStem = (typeof stem !== 'undefined' && stem !== '') ? stem + '_' + name : name;
+  
+//     if (typeof obj !== 'object') {
+//       out[newStem] = obj;
+//       return out;
+//     }
+  
+//     for (var p in obj) {
+//       var prop = flatten(obj[p], p, newStem);
+//       out = merge([out, prop]);
+//     }
+  
+//     return out;
+//   };
+
 
 let testObj = { sandwich: "tuna", chips: "cape cod" };
 
