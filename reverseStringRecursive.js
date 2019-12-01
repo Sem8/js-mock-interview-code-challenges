@@ -22,3 +22,4 @@ const reverseStrRecursive = str => {
 }
 
 console.log(reverseStrRecursive('cat')) // 'tac'
+

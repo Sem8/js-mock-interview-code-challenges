@@ -8,30 +8,33 @@ Input: 'Dog'
 Output: false
  */
 
-// My own solution: 
+// Suggested solution: 
 /*Pseudocode:
-1. Initialize an empty string called reverseStr. 
-2. Make a base case of if str is an empty string then just return an empty string.
-3. Otherwise, increment reverseStr to recursive call of isPalindromeRec passing in the input str with the substr method with parameter of 1 (so 
-    that the next call of str starts from substring of original string at the next letter's index after the first index letter) plus the first 
-    letter of the input string, str at index 0.
-4. Make an if statement, check if reverseStr is equal to input str then return true else return false.
+1. Make a base case of if input string, str length is 0 (empty string) or 1 then return true.
+2. Make another base case of if input string, str first letter at first index of 0 is not the same as the last letter at last index then return
+false
+3. Recursively call the isPalindromeRec function, passing in as input parameter the input string str but using substring method to chop off the 
+first and last letters by passing in 1 and str.length - 1 as the beginning and end numbers in the substring method and return this recursive 
+function call.
  */
 
 const isPalindromeRec = str => {
-    let originalStr = str;
-    let reverseStr = '';
-
-    if (str === '') {
-        return '';
-    };
+    if (str.length === 0 || str.length === 1) {
+        return true;
+    }
+    if (str[0] !== str[str.length - 1]) {
+        return false;
+    } 
+    return isPalindromeRec(str.substring(1, str.length - 1));
     
-    reverseStr = (isPalindromeRec(str.substr(1)) + str[0]);
-
 };
 
 
 let str1 = 'malayalam';
-let str2 = 'Dog'
+let str2 = 'Dog';
+let str3 = 'rater';
+let str4 = 'AAGCTT';
 console.log(isPalindromeRec(str1))  // true
 console.log(isPalindromeRec(str2))  // false
+console.log(isPalindromeRec(str3))  // false
+console.log(isPalindromeRec(str4))  // true
