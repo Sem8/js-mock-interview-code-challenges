@@ -82,56 +82,6 @@ const longestPalindromeSubstr = str => {
   return longestPalindromeSubstr;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Iterative approach:
-// function isPalindrome(s) {
-//     let rev = s.split("").reverse().join("");
-//     return s == rev;
-//   }
-  
-//   function longestPalindromeSubstr(s){
-//     let maxp_length = 0;
-//     let maxp = '';
-      
-//     for(let i=0; i < s.length; i++) {
-//       let subs = s.substr(i, s.length);
-      
-        
-//       for(let j=subs.length; j>=0; j--) {
-//         console.log('i: ', i);
-//         console.log('j: ', j);
-//         console.log('subs: ', subs);
-//         let sub_subs = subs.substr(0, j);
-//         // console.log('subs_subs: ', sub_subs);
-//         if (sub_subs.length <= 1)
-//             continue;
-          
-//         console.log('checking: '+ sub_subs);
-//         if (isPalindrome(sub_subs)) {
-//           console.log('palindrome: '+ sub_subs);
-//           if (sub_subs.length > maxp_length) {
-//               maxp_length = sub_subs.length;
-//               maxp = sub_subs;
-//           }
-//         }
-//       }
-//     };      
-//     //console.log(maxp_length, maxp);
-//     return maxp;
-//   }
-
 // Another iterative approach:
 // function reverse(s) {
 //   var o = [];
@@ -168,7 +118,6 @@ const longestPalindromeSubstr = str => {
 let str1 = "bananas";
 let str2 = "forgeeksskeegfor";
 
-longestPalindromeSubstr(str1);
 // longestPalindromeSubstr('tat');
 
 console.log(longestPalindromeSubstr(str1)); // 'anana'

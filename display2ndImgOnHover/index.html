@@ -1,0 +1,39 @@
+<!-- Using HTML and CSS, show how you would create an image that would display another image (aligned to the bottom, right) when the user 
+    hovers over the image. ex. The Facebook "edit profile picture" icon
+-->
+
+
+<!-- Given two img elements with the classes "one" and "two", you can give them the styles:
+.two{
+    display:none;
+}
+.one:hover + .two{
+    display: block;
+} -->
+
+
+.profile-pic {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background: url(http://lorempixel.com/200/200) no-repeat;
+    position: relative;
+}
+
+.edit-link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 50px;
+    background: url(http://lorempixel.com/100/50) no-repeat;
+    display: none;
+}
+
+.profile-pic:hover .edit-link {
+    display: block;
+}
+
+<div>
+
+</div>
