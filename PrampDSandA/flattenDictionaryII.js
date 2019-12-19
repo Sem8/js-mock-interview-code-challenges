@@ -30,28 +30,36 @@ const isObjectHelper = item => {
   return Object.prototype.toString.call(item) === "[object Object]";
 };
 
-const flattenDictionary = dict => {
+function flattenDictionary(dict) {
+  // your code goes here
   let finalObj = {};
 
-  for (let objKey in dict) {
+  for (let objKey in dict) {    
+
     if (isObjectHelper(dict[objKey]) == true) {
+
       let recursedInnerObj = flattenDictionary(dict[objKey]);
 
       for (let nestedKey in recursedInnerObj) {
-        if (nestedKey === "") {
-          finalObj[`${objKey}`] = recursedInnerObj[nestedKey];
+        if (nestedKey === '') {
+            finalObj[`${objKey}`] = recursedInnerObj[nestedKey];        
         } else {
-          finalObj[`${objKey}.${nestedKey}`] = recursedInnerObj[nestedKey];
-        };
-      };
-
+          if (objKey === '') {            
+            finalObj[nestedKey] = recursedInnerObj[nestedKey];
+          } else {
+            finalObj[`${objKey}.${nestedKey}`] = recursedInnerObj[nestedKey];            
+          }
+            
+        }
+        
+      }
     } else {
       finalObj[objKey] = dict[objKey];
-    };
-  };
-  
+    }
+  }
   return finalObj;
-};
+}
+
 
 /* Some console.log tests */
 
@@ -76,3 +84,28 @@ let inputDictII = {
 
 console.log(flattenDictionary(inputDict));
 console.log(flattenDictionary(inputDictII));
+
+
+
+/*function flattenDictionary(dict):
+    flatDictionary = {}
+    flattenDictionaryHelper("", dict, flatDictionary)
+
+    return flatDictionary
+
+
+function flattenDictionaryHelper(initialKey, dict, flatDictionary):
+    for (key : dict.keyset()):
+        value = dict.get(key)
+
+        if (!isDictionary(value)): # the value is of a primitive type
+            if (initialKey == null || initialKey == ""):
+                flatDictionary.put(key, value)
+            else:
+                flatDictionary.put(initialKey + "." + key, value)
+        else:
+            if (initialKey == null || initialKey == "")
+                flattenDictionaryHelper(key, value, flatDictionary)
+            else:
+                flattenDictionaryHelper(initialKey + "." + key, value, flatDictionary)
+*/

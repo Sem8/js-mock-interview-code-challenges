@@ -346,7 +346,7 @@ bst.insert(2)
 # bst.bft_print(bst)
 # bst.dft_print(bst)
 
-# bst.iterative_depth_first_for_each(bst.print_callback)
+bst.iterative_depth_first_for_each(bst.print_callback)
 
 # print("elegant methods")
 # print("pre order")
