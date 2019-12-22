@@ -28,22 +28,35 @@ at the left of current cell). This will add up the number of paths to get to cur
 8. Outside all for loops, return the value of current matrix at 1st index if n-1 and 2nd index of n-1 (last cell or bottom right cell which has
 all paths added up).
 '''
-def numberOfTotalPaths(n):
-    count = [[0 for x in range(n)] for y in range(n)]
-    # print (count)
+# def numberOfTotalPaths(n):
+#     count = [[0 for x in range(n)] for y in range(n)]
+#     # print (count)
 
-    for i in range(n):
-        count[0][i] = 1 # setting each column in 1st row to 1
-        count[i][0] = 1 # setting each row in 1st column to 1
-    # print(count)
+#     for i in range(n):
+#         count[0][i] = 1 # setting each column in 1st row to 1
+#         count[i][0] = 1 # setting each row in 1st column to 1
+#     # print(count)
 
-    for i in range(1, n):
-        for j in range(1, n):
-            count[i][j] = count[i-1][j] + count[i][j-1]
+#     for i in range(1, n):
+#         for j in range(1, n):
+#             count[i][j] = count[i-1][j] + count[i][j-1]
 
-    return count[n-1][n-1]
+#     return count[n-1][n-1]
+
+# Suggested Solution: Recursive approach
+''' Pseudocode:
+1. Make a base case of if input i (rows) is equal to 1 or input j (columns) is equal to 1 (there is only 1 cell and matrix is length 1) then just 
+return 1
+2. Otherwise (if input i or j is more than 1 so matrix is at least length of 2) then return the recursive call of the numberofTotalPaths function, 
+passing in the parameter of i-1, j (top cell) plus recursive call of the numberofTotalPaths function passing in the parameter of i, j-1 
+(left cell)
+'''
+def numberOfTotalPaths(i , j):
+    if i == 1 or j == 1:
+        return 1
+    return numberOfTotalPaths(i-1, j) + numberOfTotalPaths(i, j-1)
 
 
-print(numberOfTotalPaths(1))
-print(numberOfTotalPaths(2))
-print(numberOfTotalPaths(3))
+print(numberOfTotalPaths(1, 1)) # 1
+print(numberOfTotalPaths(2, 2)) # 2
+print(numberOfTotalPaths(3, 3)) # 6
