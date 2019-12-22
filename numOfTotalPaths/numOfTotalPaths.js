@@ -25,20 +25,34 @@ index of i-1 & 2nd index of j (top cell) plus value of count matrix from 1st ind
     up paths)
  */
 
-const numOfTotalPaths = (row, column) => {
-    let count = [];
+// const numOfTotalPaths = (row, column) => {
+//     let count = [];
 
-    for (let i = 0; i < row; i++) {
-        count.push([1]);
-        count[0][i] = 1;
-    };
-    // console.log(count);
-    for (let i = 1; i < row; i++) {
-        for (let j = 1; j < column; j++) {
-            count[i][j] = count[i-1][j] + count[i][j-1];
-        }
-    };
-    return count[row-1][column-1];
+//     for (let i = 0; i < row; i++) {
+//         count.push([1]);
+//         count[0][i] = 1;
+//     };
+//     // console.log(count);
+//     for (let i = 1; i < row; i++) {
+//         for (let j = 1; j < column; j++) {
+//             count[i][j] = count[i-1][j] + count[i][j-1];
+//         }
+//     };
+//     return count[row-1][column-1];
+// };
+
+
+// Suggested solution: Recursive approach
+/* Pseudocode: Takes in number of rows and number of columns as an input
+1. Make a base case of if input rows is equal to 1 or input columns is equal to 1 then just return 1
+2. Otherwise (if matrix is more than length 1) then return the recursive call of the numOfTotalPaths function passing in the parameter of
+row-1, column plus recursive call of the nomOfTotalPaths function passing in the parameters row, column-1  
+*/
+const numOfTotalPaths = (row, column) => {
+    if (row === 1 || column === 1) {
+        return 1;
+    }
+    return numOfTotalPaths(row-1, column) + numOfTotalPaths(row, column-1);
 };
 
 console.log(numOfTotalPaths(1, 1));  // 1
