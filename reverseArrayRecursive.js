@@ -68,13 +68,14 @@ the parent function's parameter as an argument.
 array (using the concat array method).
  */
 
-const reverse = arr => {
-  // base case 
-  if (arr.length === 0) {
-    return arr;
-  }
-  return reverse(arr.slice(1)).concat(arr[0]);
-}
+// const reverse = arr => {
+//   // base case 
+//   if (arr.length === 0) {
+//     return arr;
+//   }
+//   return reverse(arr.slice(1)).concat(arr[0]);
+// };
+// console.log(reverse(['a', 'b', 'c']));
 
 // let a = ['a', 'b', 'c'];
 // let a2 = a.slice(1).concat(a[0]);
@@ -84,7 +85,7 @@ const reverse = arr => {
 // console.log(a.slice(1).concat(a[0]));
 // console.log(['b', 'c'].concat('a'));  // ['b', 'c', 'a']
 // console.log(['b', 'c'].concat(['a']));  // ['b', 'c', 'a']
-console.log(reverse(['a', 'b', 'c']));
+
 
 
 // Suggested solution 3:
