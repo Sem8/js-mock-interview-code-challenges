@@ -88,45 +88,42 @@ array (using the concat array method).
 
 
 
-// Suggested solution 3:
-// function ReverseArray(arr) {
-//     if(arr.length < 2) {
+// Suggested solution 3: Takes in the array to be reversed as parameter
+/* Pseudocode:
+1. Make an if statement of if input array length of arr is less than 2 then just return the input arr (This is the base case)
+2. Otherwise (if input array, arr length is more than 2) then put the last element from input arr into an array using pop method and concat this
+last element array to the recursive call of the reverseArrRecursive function, passing in the input arr as an argument and return this.
+ */
+// const reverseArrRecursive = arr => {
+//     if (arr.length < 2) {
 //         return arr;
-//     } else {
-//         return [arr.pop()].concat(ReverseArray(arr));
 //     }
+//     return [arr.pop()].concat(reverseArrRecursive(arr));
 // };
+// console.log(reverseArrRecursive(["a", "b", "c"])); // ['c', 'b', 'a']
 
-// // Suggested solution 4:
-// function reverseArray (array) {
-//     var output = [];
-//     if (output.length===array.length) {
-//       return output;
-//     } else {
-//        return output.concat(reverseArray(array.slice(1)),array[0]);
-//       //aka pass through an array with a sliced off first index
-//       //concatenate the output from above argument with the first index of OG array 
-//     }
-//   };
+
 
 // console.log(reverseArrRecursive(["a", "b", "c"])); // ['c', 'b', 'a']
 // // reverseArrRecursive(['a', 'b', 'c'])
 
 
-// Suggested solutin 5:
-// let reverseArray = (arr, n) => {
-//     //If the length is 0 
-//     //then return an empty array
-//     if(n == 0){
-//        return [];
-//     }
-    
-//     //Call the function recursively with one index less and so on.
-//     return [arr[n-1]].concat(reverseArray(arr, --n));
-//   };
+// Suggested solutin 4: Takes in array to be reversed called arr and length of input array called len as arguments
+/*Pseudocode:
+1. Make a base case of if input len (input array arr length) is 0 then return an empty array.
+2. Otherwise put the last element from the input array arr using the len-1 indexing into an array and using concat method, add it to the recursive
+function call of the reverseArray, with input of array arr and the 2nd parameter input of passed in as decrementing len with --len and return this
+ */
 
-// let arr1 = [1, 2, 3, 4, 5]
+const reverseArray = (arr, len) => {
+    if (len == 0) {
+        return [];
+    }
+    return [arr[len-1]].concat(reverseArray(arr, --len));
+};
 
-// console.log(reverseArray(arr1, arr1.length));
+let arr1 = [1, 2, 3, 4, 5]
+
+console.log(reverseArray(arr1, arr1.length));
 
 
