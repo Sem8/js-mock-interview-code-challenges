@@ -157,79 +157,99 @@ pass in the result array called result.
 7. Outside for loop, return the result array which contains all combinations of letters from the function call   
  */
 
-const letterCombinations = (digits, current='', result=[]) => {
-  let letterMapper = {
-    2: 'abc',
-    3: 'def',
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz"
-  };
-  if (digits.length === 0 && current === '') {
-    return result;    
-  };
-  if (digits.length < 1) {
-    result.push(current);
-    return;
-  };
+// const letterCombinations = (digits, current='', result=[]) => {
+//   let letterMapper = {
+//     2: 'abc',
+//     3: 'def',
+//     4: "ghi",
+//     5: "jkl",
+//     6: "mno",
+//     7: "pqrs",
+//     8: "tuv",
+//     9: "wxyz"
+//   };
+//   if (digits.length === 0 && current === '') {
+//     return result;    
+//   };
+//   if (digits.length < 1) {
+//     result.push(current);
+//     return;
+//   };
 
-  let firstNumLetters = letterMapper[digits[0]];
-  for (let i = 0; i < firstNumLetters.length; i++) {
-    let currentLetter = firstNumLetters[i];
-    letterCombinations(digits.slice(1), current.concat(currentLetter), result);
-  }
+//   let firstNumLetters = letterMapper[digits[0]];
+//   for (let i = 0; i < firstNumLetters.length; i++) {
+//     let currentLetter = firstNumLetters[i];
+//     letterCombinations(digits.slice(1), current.concat(currentLetter), result);
+//   }
 
-  return result;
-}
-
-
-// Suggested solution 4:
-// var letterCombinations = function(digits) {
-//   const combo = (arr1, arr2) =>
-//     arr1.reduce((arr, s1) => arr.concat(arr2.map(s2 => s1 + s2)), []);
-//   return digits
-//     ? digits
-//         .split("")
-//         .map(n =>
-//           ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"][
-//             n - 2
-//           ].split("")
-//         )
-//         .reduce((res, arr) => combo(res, arr))
-//     : [];
+//   return result;
 // };
 
-// Suggested solution 5 (iterative):
-// var letterCombinations = function(digits) {
-//     var array = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
-//     var final = [];
-//     for(var i = 0; i < digits.length; i++){
-//         var curr = parseInt(digits.charAt(i));
-//         var letters = array[curr - 2];
-//         final = backtracking(final, letters);
-//     }
-//     return final;
-// };
 
-// var backtracking = function(final, curr){
-//     var tempfinal = [];
-//     if(final.length === 0){
-//        for(var q = 0; q < curr.length; q++){
-//            tempfinal.push(curr.charAt(q)); 
-//         } 
-//     }
-//     for(var j = 0; j < final.length; j++){
-//         for(var p = 0; p < curr.length; p++){
-//            tempfinal.push(final[j] + curr.charAt(p)); 
-//         }
-//     }
-//     return tempfinal;
-// };
+// Suggested solution 4 (iterative):
+/* Pseudocode:
+Uses 2 functions: 1) Main function called letterCombinations which takes in just 1 parameter called digits which is a number combination in
+string form
+2) Helper function called backtracking which takes in 2 parameters, 1st parameter is called final which will be the array that holds the 
+added up combinations of letter and the 2nd parameter is called letterCombo which will be the certain letter combination for a certain number
 
-// Suggested solution 6 (recursive):
+letterCombinations (main function):
+1. Declare an array called letterMapper and put in strings of letter combinations at index number corresponding to that letter combination's
+number (for 0th index just put 0 as string and for index of 1, just put 1 as string since no letters map to those 2 numbers).
+2. Make an if statement of if digits length is 0 then just return an empty string.
+3. Otherwise (if digits length is 1 or more) then declare an empty array called finalArr.
+4. Make a for loop, starting at index i of 0, ending at i less than digits length, increment i
+5. Inside for loop, get the letter combination string of the number at current index i from input digits number combo from the letterMapper
+array and set it to a variable called currentLetters 
+6. Still inside for loop, set finalArr array equal to function call of backtracking helper function, passing in as 1st parameter the finalArr
+array and 2nd parameter as currentLetter letter combo into the backtracking helper function.
+7. Outside for loop, return the finalArr array
+
+backtracking function (helper):
+1. Initialize an empty array called tempArr
+2. Make an if statement of if input finalArr is an empty array with length 0 then inside if statement, make a for loop, starting at index i of
+0, ending at i less than input letters length, incrment i
+3. Inside for loop, push each letter at current index i from letters string into the tempArr array.
+4. Otherwise, outside previous if statement (if input array finalArr is not empty) then make a for loop, starting at index j of 0, ending at
+j less than finalArr length, incrment j.
+5. Inside previous for loop, make another nested for loop, starting at index k of 0, ending at k less than input letters string combo length,
+incrment k.
+6. Inside nested for loop, push into the tempArr array, the current letter string combo at current index of j from the finalArr array plus 
+the current letter at current index of k from the letters string.
+7. Outside for loop, return the tempArr array
+ */
+const letterCombinations = digits => {
+  let letterMapper = ['0', '1', 'abc', 'def', 'ghi', 'jkl', "mno", "pqrs", "tuv", "wxyz"];
+  if (digits.length === 0) {
+    return '';
+  };
+
+  let finalArr = [];
+
+  for (let i = 0; i < digits.length; i++) {
+    let currentLetters = letterMapper[digits[i]];
+    finalArr = backtracking(finalArr, currentLetters);
+  };
+
+  return finalArr
+};
+
+let backtracking = (finalArr, letters) => {
+  let tempArr = [];
+  if (finalArr.length === 0) {
+    for (let i = 0; i < letters.length; i++) {
+      tempArr.push(letters[i]);
+    };
+  };
+  for (let j = 0; j < finalArr.length; j++) {
+    for (let k = 0; k < letters.length; k++) {
+      tempArr.push(finalArr[j] + letters[k]);
+    };
+  };
+  return tempArr;
+};
+
+// Suggested solution 5 (recursive):
 // const map = {
 //     1: [],
 //     2: ['a', 'b', 'c'],
@@ -258,5 +278,5 @@ const letterCombinations = (digits, current='', result=[]) => {
 // };
 
 console.log(letterCombinations("23")); // ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"];
-console.log(letterCombinations('234'));
-// console.log(letterCombinations('2'));    // ['a', 'b', 'c']
+// console.log(letterCombinations('234'));
+console.log(letterCombinations('2'));    // ['a', 'b', 'c']
