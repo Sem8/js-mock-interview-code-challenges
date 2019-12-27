@@ -109,68 +109,82 @@ the input digits number string but starting from 2nd character all the way to re
 from set2 at current index of j
 10. Outside for loop, return the result array.
  */
-const letterCombinations = digits => {
-  const letterMapper = {
-    2: ["a", "b", "c"],
-    3: ["d", "e", "f"],
-    4: ["g", "h", "i"],
-    5: ["j", "k", "l"],
-    6: ["m", "n", "o"],
-    7: ["p", "q", "r", "s"],
-    8: ["t", "u", "v"],
-    9: ["w", "x", "y", "z"]
+// const letterCombinations = digits => {
+//   const letterMapper = {
+//     2: ["a", "b", "c"],
+//     3: ["d", "e", "f"],
+//     4: ["g", "h", "i"],
+//     5: ["j", "k", "l"],
+//     6: ["m", "n", "o"],
+//     7: ["p", "q", "r", "s"],
+//     8: ["t", "u", "v"],
+//     9: ["w", "x", "y", "z"]
+//   };
+
+//   let result = [];
+//   if (digits.length === 0) {
+//     return result;
+//   };
+//   if (digits.length === 1) {
+//     return letterMapper[digits]; 
+//   };
+  
+//   let set1 = letterCombinations(digits.substr(0, 1));
+//   let set2 = letterCombinations(digits.substr(1));
+
+//   for (let i = 0; i < set1.length; i++) {
+//     for (let j = 0; j < set2.length; j++) {
+//       result.push(set1[i] + set2[j]);
+//     };
+//   };
+  
+//   return result;
+// };
+
+// Suggested solution 3 (recursive):
+/* Pseudocode:
+1. Declare an object called letter mapper, give it keys of the different numbers and set the value of each key number to a string of all the 
+letters corresponding to that number
+2. Make a base case of if input digits length is 0 and input current is an empty string then return input result which is an empty array.
+3. Make another base case of if input digits length is less than 1 only then push the current into the result array then just return to end 
+the function.
+4. Otherwise (if input digits length is more than 1) then get the string combination from the letterMapper object with key of first number 
+character from input digits number combination and set it equal to a variable called firstNumLetters
+5. Make a for loop, starting at index i of 0, ending at i less than firstNumLetters length, increment i.
+6. Inside for loop, recursively call the letterCombinations function, passing in the digits from 2nd character on for 1st parameter using 
+slice method, for 2nd parameter pass in current letter at current index i from firstNumLetters concatted to current, dor 3rd parameter just
+pass in the result array called result.
+7. Outside for loop, return the result array which contains all combinations of letters from the function call   
+ */
+
+const letterCombinations = (digits, current='', result=[]) => {
+  let letterMapper = {
+    2: 'abc',
+    3: 'def',
+    4: "ghi",
+    5: "jkl",
+    6: "mno",
+    7: "pqrs",
+    8: "tuv",
+    9: "wxyz"
+  };
+  if (digits.length === 0 && current === '') {
+    return result;    
+  };
+  if (digits.length < 1) {
+    result.push(current);
+    return;
   };
 
-  let result = [];
-  if (digits.length === 0) {
-    return result;
-  };
-  if (digits.length === 1) {
-    return letterMapper[digits]; 
-  };
-  
-  let set1 = letterCombinations(digits.substr(0, 1));
-  let set2 = letterCombinations(digits.substr(1));
+  let firstNumLetters = letterMapper[digits[0]];
+  for (let i = 0; i < firstNumLetters.length; i++) {
+    let currentLetter = firstNumLetters[i];
+    letterCombinations(digits.slice(1), current.concat(currentLetter), result);
+  }
 
-  for (let i = 0; i < set1.length; i++) {
-    for (let j = 0; j < set2.length; j++) {
-      result.push(set1[i] + set2[j]);
-    };
-  };
-  
   return result;
 }
 
-// Suggested solution 3 (recursive):
-// const letterCombinations = (digits, current = "", res = []) => {
-//     const numbers = {
-//         2: "abc",
-//         3: "def",
-//         4: "ghi",
-//         5: "jkl",
-//         6: "mno",
-//         7: "pqrs",
-//         8: "tuv",
-//         9: "wxyz"
-//     }
-
-//     if (digits.length === 0 && current === "") {
-//         return res;
-//     }
-
-//     if (digits.length < 1) {
-//         return(res.push(current));
-//     }
-
-//     let currentNumber = numbers[digits[0]];
-
-//     for (let i = 0; i < currentNumber.length; i++) {
-//       let currentLetter = currentNumber[i];
-//       letterCombinations(digits.slice(1), current.concat(currentLetter), res);
-//     }
-
-//     return res;
-// };
 
 // Suggested solution 4:
 // var letterCombinations = function(digits) {
