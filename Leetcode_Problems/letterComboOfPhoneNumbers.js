@@ -35,39 +35,39 @@ digits as 2nd parameter, empty string (prev) for 3rd parameter, 0 (index) for 4t
 parameter.
 6. Return the result array.
  */
-// const letterCombinations = digits => {
-//   let letterMapper = {
-//     2: ["a", "b", "c"],
-//     3: ["d", "e", "f"],
-//     4: ["g", "h", "i"],
-//     5: ["j", "k", "l"],
-//     6: ["m", "n", "o"],
-//     7: ["p", "q", "r", "s"],
-//     8: ["t", "u", "v"],
-//     9: ["w", "x", "y", "z"]
-//   };
+const letterCombinations = digits => {
+  let letterMapper = {
+    2: ["a", "b", "c"],
+    3: ["d", "e", "f"],
+    4: ["g", "h", "i"],
+    5: ["j", "k", "l"],
+    6: ["m", "n", "o"],
+    7: ["p", "q", "r", "s"],
+    8: ["t", "u", "v"],
+    9: ["w", "x", "y", "z"]
+  };
 
-//   let result = [];
-//   if (digits.length === 0) {
-//     return result;
-//   }
-//   if (digits.length === 1) {
-//     return letterMapper[digits];
-//   }
-//   recurse(result, digits, "", 0, letterMapper);
-//   return result;
-// };
+  let result = [];
+  if (digits.length === 0) {
+    return result;
+  }
+  if (digits.length === 1) {
+    return letterMapper[digits];
+  }
+  recurse(result, digits, "", 0, letterMapper);
+  return result;
+};
 
-// const recurse = (result, digits, prev, index, letterMapper) => {
-//   if (index === digits.length) {
-//     result.push(prev);
-//     return;
-//   }
-//   let lettersArr = letterMapper[digits[index]];
-//   for (let i = 0; i < lettersArr.length; i++) {
-//     recurse(result, digits, prev + lettersArr[i], index + 1, letterMapper);
-//   }
-// };
+const recurse = (result, digits, prev, index, letterMapper) => {
+  if (index === digits.length) {
+    result.push(prev);
+    return;
+  }
+  let lettersArr = letterMapper[digits[index]];
+  for (let i = 0; i < lettersArr.length; i++) {
+    recurse(result, digits, prev + lettersArr[i], index + 1, letterMapper);
+  }
+};
 
 // Suggested solution with minor syntax difference for letterMapper:
 
