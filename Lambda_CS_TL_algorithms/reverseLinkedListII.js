@@ -1,18 +1,5 @@
 // Reverse singly Linked list, return the new head. Also print the reversed linked list
 
-// const reverseLinkedListRecursive = sllHead => {
-//     let pointer1 = sllHead;
-//     if (pointer1.next == null) {
-//         sllHead = pointer1;
-//         return sllHead.value;
-//         // return;
-//     }
-//     reverseLinkedListRecursive(pointer1.next);
-//     let q = pointer1.next;
-//     q.next = pointer1;
-//     pointer1.next = null;
-// };
-
 const printList = sllHead => {
     let current = sllHead;
     while (current) {
@@ -83,18 +70,35 @@ const printList = sllHead => {
     // set the now pointer2.next to pointer1
     // set pointer1.next to null to end this function call so it can go back up to the next call stack
 
-const reverseLinkedListRecursive = sllHead => {
+// const reverseLinkedListRecursive = sllHead => {
+//     let pointer1 = sllHead
+
+//     if (pointer1.next == null) {
+//         sllHead = pointer1;
+//         return sllHead.value;
+//     };
+//     reverseLinkedListRecursive(pointer1.next);
+    
+//     let pointer2 = pointer1.next;
+//     pointer2.next = pointer1;
+//     pointer1.next = null;
+// };
+
+// Print linked list in reversed order, recursively (doesn't reverse the list itself just prints reversely):
+// My solution: 
+    // Set a variable pointer called pointer1 to input head
+    // Make a base case of if pointer1 is null then just return
+    // Otherwise (if pointer1 is not null) recursively call the function passing in pointer1.next as the parameter
+    // after recursive call, print out the pointer1 value
+
+const printReversedLinkedListRecursive = sllHead => {
     let pointer1 = sllHead
 
-    if (pointer1.next == null) {
-        sllHead = pointer1;
-        return sllHead.value;
+    if (pointer1 == null) {
+        return;
     };
-    reverseLinkedListRecursive(pointer1.next);
-    
-    let pointer2 = pointer1.next;
-    pointer2.next = pointer1;
-    pointer1.next = null;
+    printReversedLinkedListRecursive(pointer1.next);
+    console.log(pointer1.value);
 };
 
 class ListNode {
@@ -119,5 +123,7 @@ e1.next = f1;
 
 // console.log(printList(a1));
 // console.log(reverseLinkedList(a1));
-console.log(reverseLinkedListRecursive(a1));
-console.log(printList(f1));
+// console.log(reverseLinkedListRecursive(a1));
+// console.log(printList(f1));
+
+console.log(printReversedLinkedListRecursive(a1));
