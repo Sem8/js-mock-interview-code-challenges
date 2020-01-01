@@ -84,6 +84,7 @@ const printList = sllHead => {
 //     pointer1.next = null;
 // };
 
+
 // Print linked list in reversed order, recursively (doesn't reverse the list itself just prints reversely):
 // My solution: 
     // Set a variable pointer called pointer1 to input head
@@ -91,14 +92,32 @@ const printList = sllHead => {
     // Otherwise (if pointer1 is not null) recursively call the function passing in pointer1.next as the parameter
     // after recursive call, print out the pointer1 value
 
-const printReversedLinkedListRecursive = sllHead => {
-    let pointer1 = sllHead
+// const printReversedLinkedListRecursive = sllHead => {
+//     let pointer1 = sllHead
 
+//     if (pointer1 == null) {
+//         return;
+//     };
+//     printReversedLinkedListRecursive(pointer1.next);
+//     console.log(pointer1.value);
+// };
+
+
+// Print linked list recursively
+// My solution:
+    // set a pointer variable called pointer1 to input head
+    // Make a base case of if pointer1 node is null then just return to end the function
+    // Otherwise (if current pointer1 node is not null) then print value of current pointer1 node then recursively call the function passing
+    // in pointer1.next as the current head as the parameter now.
+const printListRecursive = sllHead => {
+    let pointer1 = sllHead; 
+    
+    // base case:
     if (pointer1 == null) {
         return;
     };
-    printReversedLinkedListRecursive(pointer1.next);
     console.log(pointer1.value);
+    printListRecursive(pointer1.next);
 };
 
 class ListNode {
@@ -126,4 +145,5 @@ e1.next = f1;
 // console.log(reverseLinkedListRecursive(a1));
 // console.log(printList(f1));
 
-console.log(printReversedLinkedListRecursive(a1));
+// console.log(printReversedLinkedListRecursive(a1));
+console.log(printListRecursive(a1));
