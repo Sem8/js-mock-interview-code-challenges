@@ -98,9 +98,7 @@ const rockPaperScissors = n => {
     let result = [];
     recurse([], n, result);
     return result;
-}
+};
+
 console.log(rockPaperScissors(1));
 console.log(rockPaperScissors(2));
-
-
-
