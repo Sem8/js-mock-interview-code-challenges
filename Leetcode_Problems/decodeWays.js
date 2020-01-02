@@ -17,28 +17,6 @@ Input: "226"
 Output: 3
 Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6). */
 
-// const numDecodings = s => {
-//     let msgLen = s.length;
-//     if (parseInt(s) === 0) {
-//         return 0;
-//     };
-//     if (msgLen === 0 || msgLen === 1) {
-//         return 1;
-//     };
-
-//     let count = 0;
-
-//     if (parseInt(s[msgLen - 1]) > 0) {
-//         count = numDecodings(s.substring(0, msgLen-1));
-//     };
-
-//     if (parseInt(s.substring(msgLen-2)) < 27 && parseInt(s.substring(msgLen-2)) >= 10) {
-//         count += numDecodings(s.substring(0, msgLen-2));
-//     };
-
-//     return count;
-// };
-
 // My solution: Doesn't work for input numbers of more than 3 numbers
 // Make an object with numbers as keys and letters as values
 // Declare an empty object, call it result, return length of it at end of function with Object.keys(result).length

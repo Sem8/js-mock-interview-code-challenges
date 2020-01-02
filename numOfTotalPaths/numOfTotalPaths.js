@@ -49,12 +49,14 @@ index of i-1 & 2nd index of j (top cell) plus value of count matrix from 1st ind
 row-1, column plus recursive call of the nomOfTotalPaths function passing in the parameters row, column-1  
 */
 const numOfTotalPaths = (row, column) => {
+    // base case:
     if (row === 1 || column === 1) {
         return 1;
     }
     return numOfTotalPaths(row-1, column) + numOfTotalPaths(row, column-1);
 };
 
+// console.log tests
 console.log(numOfTotalPaths(1, 1));  // 1
 console.log(numOfTotalPaths(2, 2));  // 2
 console.log(numOfTotalPaths(3, 3));  // 6
