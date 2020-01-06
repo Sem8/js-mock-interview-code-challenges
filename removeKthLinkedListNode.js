@@ -1,3 +1,6 @@
+// Time complexity: O(n)
+// Space complxity: O(n)
+
 const removeKthLinkedListNode = (head, k) => {
     let list = [];
     let currentNode = head;
@@ -28,9 +31,7 @@ const removeKthLinkedListNode = (head, k) => {
         list[list.length-k-1].next = null;
         return list[0];
     }
-}
-
-
+};
 
 const SinglyLinkedListNode = class {
     constructor(nodeData) {

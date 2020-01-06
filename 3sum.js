@@ -23,6 +23,8 @@ is the same as the element at 1 before the rightIndex then just decrement rightI
 15. Outside for loop, return result array 
 
  */
+// Time complexity: O(n log n) + O(n^2)
+// Space complexity: O(2n) at worst --> O(n)
 
 const threeNumberSum = (arr, target) => {
   arr.sort((a, b) => {
