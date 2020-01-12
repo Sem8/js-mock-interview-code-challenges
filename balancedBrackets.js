@@ -1,4 +1,4 @@
-// Time complexity: O(n * 4)
+// Time complexity: O(n) * O(8)
 // space complexity: O(m + 12)
 
 const balancedBrackets = (string) => {
@@ -27,9 +27,9 @@ const balancedBrackets = (string) => {
                 return false
             }
         }
-        // else {
-        //     continue;
-        // }
+        else {
+            continue;
+        }
     };
     return (temp.length === 0);
 }
