@@ -30,6 +30,20 @@ with path.slice() method, call it new_path, push the input values into the back 
 the stack
 10. Call the pathAdder function on each vertex of the neighbor_vertices set using the forEach sets method.
  */
+
+/* Breadth-first traversal pseudocode:
+1. Declare an instantiation of the Queue class, call it queue
+2. Declare an empty set, call it visited
+3. Push the input starting_vertex into the back of Queue using the enqueue method
+4. While queue is not empty (queue size is more than 0)
+5. In the while loop, take out the vertex from the front of the queue using dequeue method and call the vertex get_vertex
+6. Still inside while loop, if get_vertex vertex is not in visited set, add it to the visited set.
+7. Still inside if statement of if get_vertex is not in visited set, get the set of neighbors of the get_vertex and call it neighbor_vertices
+8. Make a helper function called neighborTraversal which takes in value as an input parameter. Inside neighborTraveral function, console log
+out each input value. Then enqueue this value onto the back of the queue so that we can then get this neighbor's neighbors and print it out
+9. Outside, the neighborTraversal function, call the forEach method of the neigbor_vertices set (neighbors set of get_vertex) and pass in the
+neighborTraversal helper function as a callback to that forEach method.   
+ */
 class Queue {
   constructor() {
     this.queue = [];
@@ -157,6 +171,29 @@ class Graph {
 
     return null;
   }
+  bft(starting_vertex_id) {
+    let queue = new Queue();
+    let visited = new Set();
+    queue.enqueue(starting_vertex_id);
+
+    while (queue.size() > 0) {
+      let get_vertex = queue.dequeue();
+
+      if (visited.has(get_vertex) == false) {
+        console.log(get_vertex);
+        visited.add(get_vertex);
+
+        let neighbor_vertices = this.vertices[get_vertex];
+
+        let neighborTraversal = value => {
+          queue.enqueue(value);
+        };
+
+        neighbor_vertices.forEach(neighborTraversal);
+      }
+    }
+    return;
+  }
 }
 
 let graph = new Graph();
@@ -191,5 +228,21 @@ Valid DFS paths:
     [1, 2, 4, 6]
     [1, 2, 4, 7, 6]
 */
+// console.log(graph.dfs_path(1, 6));
 
-console.log(graph.dfs_path(1, 6));
+/*
+Valid BFT paths:
+    1, 2, 3, 4, 5, 6, 7
+    1, 2, 3, 4, 5, 7, 6
+    1, 2, 3, 4, 6, 7, 5
+    1, 2, 3, 4, 6, 5, 7
+    1, 2, 3, 4, 7, 6, 5
+    1, 2, 3, 4, 7, 5, 6
+    1, 2, 4, 3, 5, 6, 7
+    1, 2, 4, 3, 5, 7, 6
+    1, 2, 4, 3, 6, 7, 5
+    1, 2, 4, 3, 6, 5, 7
+    1, 2, 4, 3, 7, 6, 5
+    1, 2, 4, 3, 7, 5, 6
+ */
+console.log(graph.bft(1));
