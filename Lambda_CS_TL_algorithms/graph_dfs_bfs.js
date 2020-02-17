@@ -39,8 +39,8 @@ the stack
 5. In the while loop, take out the vertex from the front of the queue using dequeue method and call the vertex get_vertex
 6. Still inside while loop, if get_vertex vertex is not in visited set, add it to the visited set.
 7. Still inside if statement of if get_vertex is not in visited set, get the set of neighbors of the get_vertex and call it neighbor_vertices
-8. Make a helper function called neighborTraversal which takes in value as an input parameter. Inside neighborTraveral function, console log
-out each input value. Then enqueue this value onto the back of the queue so that we can then get this neighbor's neighbors and print it out
+8. Make a helper function called neighborTraversal which takes in value as an input parameter. Inside neighborTraveral function enqueue the
+input value onto the back of the queue so that we can then get this neighbor's neighbors and print it out
 9. Outside, the neighborTraversal function, call the forEach method of the neigbor_vertices set (neighbors set of get_vertex) and pass in the
 neighborTraversal helper function as a callback to that forEach method.   
  */
@@ -171,6 +171,7 @@ class Graph {
 
     return null;
   }
+
   bft(starting_vertex_id) {
     let queue = new Queue();
     let visited = new Set();
@@ -193,6 +194,30 @@ class Graph {
       }
     }
     return;
+  }
+
+  dft(starting_vertex_id) {
+    let stack = new Stack();
+    let visited = new Set();
+
+    stack.push(starting_vertex_id);
+
+    while (stack.size() > 0) {
+      let get_vertex = stack.pop();
+
+      if (visited.has(get_vertex) == false) {
+        visited.add(get_vertex);
+        console.log(get_vertex);
+
+        let neigbor_vertices = this.vertices[get_vertex];
+
+        let neighborTraversal = value => {
+          stack.push(value);
+        };
+
+        neigbor_vertices.forEach(neighborTraversal);
+      }
+    }
   }
 }
 
@@ -245,4 +270,13 @@ Valid BFT paths:
     1, 2, 4, 3, 7, 6, 5
     1, 2, 4, 3, 7, 5, 6
  */
-console.log(graph.bft(1));
+// console.log(graph.bft(1));
+
+/*
+Valid DFT paths:
+    1, 2, 3, 5, 4, 6, 7
+    1, 2, 3, 5, 4, 7, 6
+    1, 2, 4, 7, 6, 3, 5
+    1, 2, 4, 6, 3, 5, 7
+ */
+console.log(graph.dft(1));
