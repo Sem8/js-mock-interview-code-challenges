@@ -230,12 +230,12 @@ class Graph {
         neigbor_vertices.forEach(neighborTraversal);
       }
     }
-  };
+  }
 
-  dft_recursive(starting_vertex, visited=null) {
+  dft_recursive(starting_vertex, visited = null) {
     if (visited == null) {
       visited = new Set();
-    };
+    }
 
     visited.add(starting_vertex);
     console.log(starting_vertex);
@@ -244,12 +244,47 @@ class Graph {
 
     let neighborAdder = value => {
       if (visited.has(value) == false) {
-        this.dft_recursive(value, visited)
+        this.dft_recursive(value, visited);
       }
     };
 
     neighbors.forEach(neighborAdder);
-  }
+  };
+
+  dfs_recursive_path(start_vertex, target_value, visited=null, path=null) {
+    if (visited == null) {
+      visited = new Set();      
+    };
+
+    if (path == null) {
+      path = [];
+    };
+
+    visited.add(start_vertex);    
+
+    path.push(start_vertex);
+
+
+    if (start_vertex == target_value) {
+      console.log(path)
+      return path;
+    }
+
+    let neighbors = this.vertices[start_vertex];
+
+    let neighborAdder = value => {
+      if (visited.has(value) == false) {
+        let new_path = this.dfs_recursive_path(value, target_value, visited, path);
+        if (new_path) {
+          // console.log(new_path)
+          return new_path;
+        };       
+      };
+    };
+
+    neighbors.forEach(neighborAdder);
+    // return null;
+  };
 }
 
 let graph = new Graph();
@@ -319,4 +354,11 @@ Valid DFT recursive paths:
     1, 2, 4, 7, 6, 3, 5
     1, 2, 4, 6, 3, 5, 7
  */
-console.log(graph.dft_recursive(1));
+// console.log(graph.dft_recursive(1));
+
+/*
+Valid DFS paths:
+    [1, 2, 4, 6]
+    [1, 2, 4, 7, 6]
+ */
+console.log(graph.dfs_recursive_path(1, 6));
