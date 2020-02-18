@@ -44,6 +44,18 @@ input value onto the back of the queue so that we can then get this neighbor's n
 9. Outside, the neighborTraversal function, call the forEach method of the neigbor_vertices set (neighbors set of get_vertex) and pass in the
 neighborTraversal helper function as a callback to that forEach method.   
  */
+
+/* Depth first traversal recursive
+1. Takes in starting_vertex and visited set to null as input parameters
+2. Inside function, check if visited is None then set visited equal to an empty set
+3. Add the input starting_vertex to visited set
+4. Print out the starting_vertex with console log
+5. Get the neighbors of starting_vertex from the self.vertices dictionary call it neighbors
+6. Make a helper function called neighborAdder which will be the callback, it takes in value as an argument. Inside the neighborAdder function
+check if value is not in visited then recursively call the dft_recursive outer function, passing in value as the 1st parameter (in place of 
+  starting_vertex and visited set)
+6. Call the neighborAdder helper function with the forEach method on the neighbor set from the starting_vertex neighbors. 
+ */
 class Queue {
   constructor() {
     this.queue = [];
@@ -218,6 +230,25 @@ class Graph {
         neigbor_vertices.forEach(neighborTraversal);
       }
     }
+  };
+
+  dft_recursive(starting_vertex, visited=null) {
+    if (visited == null) {
+      visited = new Set();
+    };
+
+    visited.add(starting_vertex);
+    console.log(starting_vertex);
+
+    let neighbors = this.vertices[starting_vertex];
+
+    let neighborAdder = value => {
+      if (visited.has(value) == false) {
+        this.dft_recursive(value, visited)
+      }
+    };
+
+    neighbors.forEach(neighborAdder);
   }
 }
 
@@ -279,4 +310,13 @@ Valid DFT paths:
     1, 2, 4, 7, 6, 3, 5
     1, 2, 4, 6, 3, 5, 7
  */
-console.log(graph.dft(1));
+// console.log(graph.dft(1));
+
+/*
+Valid DFT recursive paths:
+    1, 2, 3, 5, 4, 6, 7
+    1, 2, 3, 5, 4, 7, 6
+    1, 2, 4, 7, 6, 3, 5
+    1, 2, 4, 6, 3, 5, 7
+ */
+console.log(graph.dft_recursive(1));
