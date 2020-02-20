@@ -20,7 +20,7 @@ of substring current key in hashtable is more than 1 then push that key into the
 
 //     for (let i = 0; i < s.length - 9; i++) {
 //         testArr.push(s.substr(i, 10));
-        
+
 //     };
 //     // console.log(testArr);
 //     for (let i = 0; i < testArr.length; i++) {
@@ -29,7 +29,7 @@ of substring current key in hashtable is more than 1 then push that key into the
 //         } else {
 //             hashTable[testArr[i]] = 1;
 //         }
-        
+
 //     };
 //     // console.log(hashTable);
 //     // console.log('hashtable length: ', Object.keys(hashTable).length);
@@ -51,22 +51,21 @@ const findRepeatedDnaSequences = function(s) {
     let sequences;
 
     for (let i = 0; i < sLength; i++) {
-        sequences = s.substr(i, 10)
+        sequences = s.substr(i, 10);
         if (sequences in hashTable) {
-            hashTable[sequences]++;
+        hashTable[sequences]++;
         } else {
-            hashTable[sequences] = 1;
-        };        
-    };
+        hashTable[sequences] = 1;
+        }
+    }
     for (substrings in hashTable) {
         if (hashTable[substrings] > 1) {
-            finalArr.push(substrings);
-        };
-    };
+        finalArr.push(substrings);
+        }
+    }
     return finalArr;
 };
 
-
-s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
 // findRepeatedDnaSequences(s);
-console.log(findRepeatedDnaSequences(s)) // ["AAAAACCCCC", "CCCCCAAAAA"]
+console.log(findRepeatedDnaSequences(s)); // ["AAAAACCCCC", "CCCCCAAAAA"]
