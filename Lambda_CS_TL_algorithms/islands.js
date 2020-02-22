@@ -1,5 +1,5 @@
-/* Write a function that takes a 2D binary array and # returns the number of 1 islands. 
-An island consists of 1s that are connected to the north, south, east or west. */
+/* Write a function that takes a 2D binary array and returns the number of 1 islands. 
+An island consists of 1s that are connected to the north, south, east or west but not diagonally. */
 
 /* Pseudocode:
 
@@ -34,9 +34,9 @@ then push the row - 1, column coordinates as an array into the neighbors array
 6. Finally return the neighbors matrix
 
 // dfs helper function - takes in as parameters: row position, column position, matrix, visited
-1. Instantiate an Stack class call it stack
+1. Instantiate a Stack class call it stack
 2. Push into the back of stack, the input row and input column coordinates as an array
-3. Make a while loop, which stack is not empty (stack.size is more than 0)
+3. Make a while loop, while stack is not empty (stack.size is more than 0)
 4. In while loop, pop off the back of stack the last array item of row, column coordinates, put it in variable called currentPosition
 5. Inside while loop, with if statement, check if value at current row and column coordinate from currentPosition in the visited matrix is false 
 then set it to true
@@ -64,6 +64,121 @@ const big_islands = [
   [0, 0, 1, 1, 0, 1, 0, 0, 1, 0]
 ];
 
+class Stack {
+  constructor() {
+    this.stack = [];
+  }
+  push(value) {
+    this.stack.push(value);
+  }
+  pop() {
+    if (this.size() > 0) {
+      return this.stack.pop();
+    } else {
+      return null;
+    }
+  }
+
+  size() {
+    return this.stack.length;
+  }
+}
+
+// getNeighbors helper function to return matrix of array coordinates where neighbors from parent function coordinate with value of 1 are also 1
+let getNeighbors = (row, column, matrix) => {
+  let neighbors = [];
+  // let stepNorth = false;
+  // let stepSouth = false;
+  // let stepEast = false;
+  // let stepWest = false;
+
+  // if (row > 0) {
+  //   stepNorth = row - 1
+  // }
+
+  // Check if North neighbor has value of 1:
+  if (row > 0 && matrix[row - 1][column] == 1) {
+    neighbors.push([row - 1, column]);
+  }
+
+  // Check if South neighbor has value of 1:
+  if (row < matrix.length - 1 && matrix[row + 1][column] == 1) {
+    neighbors.push([row + 1, column]);
+  }
+
+  // Check if West neighbor has value of 1:
+  if (column > 0 && matrix[row][column - 1] == 1) {
+    neighbors.push([row, column - 1]);
+  }
+
+  // Check if East neighbor has value of 1:
+  if (column < matrix[0].length - 1 && matrix[row][column + 1] == 1) {
+    neighbors.push([row, column + 1]);
+  }
+
+  return neighbors;
+};
+
+// dfs function to mark as visited all the neighbors of current row and column from main island_counter function:
+let dfs = (row, column, matrix, visited) => {
+  let stack = new Stack();
+  stack.push([row, column]);
+  // console.log('stack: ', stack);
+
+  while (stack.size() > 0) {
+    let currentPosition = stack.pop();
+    // console.log('currentPosition[0]: ', currentPosition[0]);
+    // console.log('visited[0][1]: ', visited[0][1]);
+    // console.log('visited[currentPosition[0]][currentPosition[1]]: ', visited[currentPosition[0]][currentPosition[1]]);
+    // console.log('visited: ', visited);
+    if (!visited[currentPosition[0]][currentPosition[1]]) {
+      visited[currentPosition[0]][currentPosition[1]] = true;
+
+      let validNeighbors = getNeighbors(currentPosition[0], currentPosition[1], matrix );
+      // console.log("validNeighbors: ", validNeighbors);
+      // console.log('validNeighbors length: ', validNeighbors.length)
+      for (let eachValidNeighbor of validNeighbors) {
+        // console.log("validNeighbors: ", validNeighbors);
+        // console.log("eachValidNeighbor length: ", eachValidNeighbor.length);
+        stack.push(eachValidNeighbor);
+      };
+
+    };
+  }
+
+  return visited;
+};
+
+// main island_counter function:
+let island_counter = matrix => {
+  let visited = [];
+
+  for (let i = 0; i < matrix.length; i++) {
+    visited.push([]);
+    for (let j = 0; j < matrix[0].length; j++) {
+      visited[i][j] = false;
+    }
+  }
+  // console.log('visited: ', visited);
+
+  let island_count = 0;
+
+  for (let row = 0; row < matrix.length; row++) {
+    for (let column = 0; column < matrix[0].length; column++) {
+      if (!visited[row][column]) {
+        if (matrix[row][column] == 1) {
+          // visited[row][column] = true;
+          let visitedNeighbors = dfs(row, column, matrix, visited);
+          island_count++;
+        } else {
+          visited[row][column] = true;
+        }
+      }
+    }
+  }
+
+  return island_count;
+};
 
 console.log(island_counter(islands)); // 4
 
