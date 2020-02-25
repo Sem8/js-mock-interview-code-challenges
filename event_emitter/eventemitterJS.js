@@ -23,6 +23,45 @@ EventEmitter 'trigger' method:
 arguments
 2. In the trigger method, take the array value (array of callbacks) of the eventName key from events object and run a forEach method on that array
 of callback functions. In the forEach method, name each array element of callbacks, cb and use the apply method to each cb callback function to 
-pass in the arguments of rest 
-
+pass in the arguments of rest
 */
+
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  on(eventName, callback) {
+    if (this.events[eventName]) {
+      this.events[eventName].push(callback);
+    } else {
+      this.events[eventName] = [callback];
+    }
+  };
+
+  trigger(eventName, ...rest) {
+    //   console.log('rest: ', rest);
+    if (this.events[eventName]) {
+      this.events[eventName].forEach(cb => {
+        // cb.apply(null, [rest]);
+        return cb(rest);
+      });
+    }
+  }
+};
+
+let oldFunc = () => {
+    console.log('I have changed');
+}
+
+let newFunc = () => {
+    console.log('I am new');
+}
+
+let ee = new EventEmitter();
+
+ee.on('change', (nameOfEvent) => {
+    console.log(`I have changed according to ${nameOfEvent}`);    
+});
+
+ee.trigger('change', 'firstParam', 'secondParam');
