@@ -39,33 +39,65 @@ character from input str1 at strPointer, then finalStr to += character from inpu
 10. return finalStr
 '''
 
+# def alternativelyMergeStr(str1, str2):
+#     strPointer = 0
+#     finalStr = ''
+
+#     if (len(str1) > len(str2)):
+#         while strPointer < len(str2):
+#             finalStr += str1[strPointer]
+#             finalStr += str2[strPointer]
+#             strPointer += 1
+
+#         restOfStr = str1[len(str2): len(str1)]
+#         finalStr += restOfStr
+
+#     elif (len(str2) > len(str1)):
+#         while strPointer < len(str1):
+#             finalStr += str1[strPointer]
+#             finalStr += str2[strPointer]
+#             strPointer += 1
+
+#         restOfStr = str2[len(str1): len(str2)]
+#         finalStr += restOfStr
+#     else:
+#         while strPointer < len(str1):
+#             finalStr += str1[strPointer]
+#             finalStr += str2[strPointer]
+#             strPointer += 1
+
+#     return finalStr
+
+
+# 2nd solution: Recursive
+''' Pseudocode: 
+1. Make an if statement of if str1 is not valid then return str2
+2. Make another if statement of if str2 is not valid then return str1
+3. Otherwise, return 1st character of str1 + 1st character of str2 + recursive call of function passing in as parameters the str1 starting 
+from the next character after 1st character, and 2nd parameter will be str2 starting from next character after 1st character
+'''
+# def alternativelyMergeStr(str1, str2):
+#     if not str1:
+#         return str2
+#     if not str2:
+#         return str1
+#     return str1[0] + str2[0] + alternativelyMergeStr(str1[1:], str2[1:])
+
+
+# 3rd solution: Geeks for geeks
+'''
+1. Declare an empty string call it finalStr to hold the final string to return
+2. Make a for loop of looping through the length of str1 character by character calling i as the current index, then make an or statment 
+where we also loop through the length of str2 character by character also calling i as the current index
+3. Inside for loop, add character at current index i from str1 onto the finalStr with +=
+4. Still inside for loop, add character at current index i from str2 onto the finalStr with +=
+5. Outside for loop return finalStr
+'''
 def alternativelyMergeStr(str1, str2):
-    strPointer = 0
     finalStr = ''
-
-    if (len(str1) > len(str2)):
-        while strPointer < len(str2):
-            finalStr += str1[strPointer]
-            finalStr += str2[strPointer]
-            strPointer += 1
-
-        restOfStr = str1[len(str2): len(str1)]
-        finalStr += restOfStr
-
-    elif (len(str2) > len(str1)):
-        while strPointer < len(str1):
-            finalStr += str1[strPointer]
-            finalStr += str2[strPointer]
-            strPointer += 1
-
-        restOfStr = str2[len(str1): len(str2)]
-        finalStr += restOfStr
-    else:
-        while strPointer < len(str1):
-            finalStr += str1[strPointer]
-            finalStr += str2[strPointer]
-            strPointer += 1
-
+    for i in range(len(str1)) or i in range(len(str2)):
+        finalStr += str1[i]
+        finalStr += str2[i]
     return finalStr
 
 print(alternativelyMergeStr("geeks", "forgeeks"))  # 'gfeoerkgseeks'
