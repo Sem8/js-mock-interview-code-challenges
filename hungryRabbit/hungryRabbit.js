@@ -7,6 +7,7 @@
 // The rabbit spots when all positions around it are 0s. Calculate how many points the rabbit will score for a given m x n matrix.
 
 
+/* Does not return the right results!!! */
 const hungryRabbit = matrix => {
 	const m = matrix.length; 		// length of cols
 	const n = matrix[0].length; // length of rows 
@@ -59,9 +60,25 @@ const hungryRabbit = matrix => {
 	return carrotsEaten;
 }
 
-hungryRabbit([
-	[1, 2, 4, 2],
-	[6, 3, 8, 1],
-	[3, 5, 6, 2],
-	[5, 7, 8, 1]
-]);
+// hungryRabbit([
+// 	[1, 2, 4, 2],
+// 	[6, 3, 8, 1],
+// 	[3, 5, 6, 2],
+// 	[5, 7, 8, 1]
+// ]);
+
+let garden = [
+    [5, 7, 8, 6, 3],
+    [0, 0, 7, 0, 4],
+    [4, 6, 3, 4, 9],
+    [3, 1, 0, 5, 8]
+];
+
+// console.log(hungryRabbit([
+// 	[1, 2, 4, 2],
+// 	[6, 3, 8, 1],
+// 	[3, 5, 6, 2],
+// 	[5, 7, 8, 1]
+// ]));
+
+console.log(hungryRabbit(garden));

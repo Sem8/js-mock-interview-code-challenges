@@ -59,6 +59,8 @@ def hungry_rabbit(garden):
     return hungry_rabbit_util(copy, row, col)
 
 
+
+
 if __name__ == "__main__":
     garden = [
         [5, 7, 8, 6, 3],
@@ -67,4 +69,11 @@ if __name__ == "__main__":
         [3, 1, 0, 5, 8]
     ]
 
-    print hungry_rabbit(garden)
+    gardenII = [
+ 	[1, 2, 4, 2],
+ 	[6, 3, 8, 1],
+ 	[3, 5, 6, 2],
+ 	[5, 7, 8, 1]
+ ]
+    print(hungry_rabbit(gardenII))
+    
