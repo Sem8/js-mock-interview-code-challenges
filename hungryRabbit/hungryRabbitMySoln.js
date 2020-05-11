@@ -157,7 +157,7 @@ let notSleeping = (matrixGarden, row, col) => {
 
   if (row === 0) {
     if (
-      // (matrixGarden[row - 1][col] === undefined) &&        
+      // (!matrixGarden[row - 1][col]) &&        
       (matrixGarden[row + 1][col] === undefined || matrixGarden[row + 1][col] == 0)
       && (matrixGarden[row][col - 1] == undefined || matrixGarden[row][col - 1] == 0)
       && (matrixGarden[row][col + 1] == undefined || matrixGarden[row][col + 1] == 0)
@@ -169,7 +169,7 @@ let notSleeping = (matrixGarden, row, col) => {
 
   if (row === matrixGarden.length - 1) {
     if (
-      // (matrixGarden[row + 1][col] === undefined) &&
+      // (!matrixGarden[row + 1][col]) &&
       (matrixGarden[row - 1][col] == undefined || matrixGarden[row - 1][col] == 0)      
       && (matrixGarden[row][col - 1] == undefined || matrixGarden[row][col - 1] == 0)
       && (matrixGarden[row][col + 1] == undefined || matrixGarden[row][col + 1] == 0)
@@ -181,7 +181,7 @@ let notSleeping = (matrixGarden, row, col) => {
 
   if (col === matrixGarden[0].length - 1) {
     if (
-      // (matrixGarden[row][col+1] === undefined) &&
+      // (!matrixGarden[row][col+1]) &&
         (matrixGarden[row - 1][col] == undefined || matrixGarden[row - 1][col] == 0)
         && (!matrixGarden[row + 1][col] || matrixGarden[row + 1][col] == 0)
         && (matrixGarden[row][col - 1] == undefined || matrixGarden[row][col - 1] == 0)      
@@ -192,7 +192,7 @@ let notSleeping = (matrixGarden, row, col) => {
 
   if (col === 0) {
     if (
-      // (matrixGarden[row][col-1] === undefined) &&
+      // (!matrixGarden[row][col-1]) &&
         (matrixGarden[row - 1][col] == undefined || matrixGarden[row - 1][col] == 0)
         && (!matrixGarden[row + 1][col] || matrixGarden[row + 1][col] == 0)
         && (matrixGarden[row][col + 1] == undefined || matrixGarden[row][col + 1] == 0)     
