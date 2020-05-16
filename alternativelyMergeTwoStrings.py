@@ -39,34 +39,34 @@ character from input str1 at strPointer, then finalStr to += character from inpu
 10. return finalStr
 '''
 
-# def alternativelyMergeStr(str1, str2):
-#     strPointer = 0
-#     finalStr = ''
+def alternativelyMergeStr(str1, str2):
+    strPointer = 0
+    finalStr = ''
 
-#     if (len(str1) > len(str2)):
-#         while strPointer < len(str2):
-#             finalStr += str1[strPointer]
-#             finalStr += str2[strPointer]
-#             strPointer += 1
+    if (len(str1) > len(str2)):
+        while strPointer < len(str2):
+            finalStr += str1[strPointer]
+            finalStr += str2[strPointer]
+            strPointer += 1
 
-#         restOfStr = str1[len(str2): len(str1)]
-#         finalStr += restOfStr
+        restOfStr = str1[len(str2): len(str1)]
+        finalStr += restOfStr
 
-#     elif (len(str2) > len(str1)):
-#         while strPointer < len(str1):
-#             finalStr += str1[strPointer]
-#             finalStr += str2[strPointer]
-#             strPointer += 1
+    elif (len(str2) > len(str1)):
+        while strPointer < len(str1):
+            finalStr += str1[strPointer]
+            finalStr += str2[strPointer]
+            strPointer += 1
 
-#         restOfStr = str2[len(str1): len(str2)]
-#         finalStr += restOfStr
-#     else:
-#         while strPointer < len(str1):
-#             finalStr += str1[strPointer]
-#             finalStr += str2[strPointer]
-#             strPointer += 1
+        restOfStr = str2[len(str1): len(str2)]
+        finalStr += restOfStr
+    else:
+        while strPointer < len(str1):
+            finalStr += str1[strPointer]
+            finalStr += str2[strPointer]
+            strPointer += 1
 
-#     return finalStr
+    return finalStr
 
 
 # 2nd solution: Recursive
@@ -76,12 +76,12 @@ character from input str1 at strPointer, then finalStr to += character from inpu
 3. Otherwise, return 1st character of str1 + 1st character of str2 + recursive call of function passing in as parameters the str1 starting 
 from the next character after 1st character, and 2nd parameter will be str2 starting from next character after 1st character
 '''
-# def alternativelyMergeStr(str1, str2):
-#     if not str1:
-#         return str2
-#     if not str2:
-#         return str1
-#     return str1[0] + str2[0] + alternativelyMergeStr(str1[1:], str2[1:])
+def alternativelyMergeStr(str1, str2):
+    if not str1:
+        return str2
+    if not str2:
+        return str1
+    return str1[0] + str2[0] + alternativelyMergeStr(str1[1:], str2[1:])
 
 
 # 3rd solution: Geeks for geeks
