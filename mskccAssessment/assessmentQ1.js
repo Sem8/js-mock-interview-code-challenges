@@ -18,7 +18,7 @@ console.log(solution([-1, 3, -10, 2]));
 
 // Fixed code snippet
 function solution(A) {
-    var ans = 0;
+    var ans = 10000;
     for (i = 0; i < A.length; i++) {
         if (ans > A[i]) {
             ans = A[i];
@@ -26,3 +26,8 @@ function solution(A) {
     }
     return ans;
 }
+
+console.log(solution([-1, 1, -2, 2]));
+console.log(solution([-1, 1, 3, 2]));
+console.log(solution([-1, 3, -10, 2]));
+console.log(solution([1, 3, 10, 12]));
