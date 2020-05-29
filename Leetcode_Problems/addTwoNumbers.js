@@ -96,4 +96,82 @@ let l2c = new ListNode(4);
 l2a.next = l2b;
 l2b.next = l2c;
 
-console.log(addTwoNumbers(l1a, l2a));
+let m1a = new ListNode(1);
+let m1b = new ListNode(0);
+let m1c = new ListNode(0);
+let m1d = new ListNode(0);
+let m1e = new ListNode(0);
+let m1f = new ListNode(0);
+let m1g = new ListNode(0);
+let m1h = new ListNode(0);
+let m1i = new ListNode(0);
+let m1j = new ListNode(0);
+let m1k = new ListNode(0);
+let m1l = new ListNode(0);
+let m1m = new ListNode(0);
+let m1n = new ListNode(0);
+let m1o = new ListNode(0);
+let m1p = new ListNode(0);
+let m1q = new ListNode(0);
+let m1r = new ListNode(0);
+let m1s = new ListNode(0);
+let m1t = new ListNode(0);
+let m1u = new ListNode(0);
+let m1v = new ListNode(0);
+let m1w = new ListNode(0);
+let m1x = new ListNode(0);
+let m1y = new ListNode(0);
+let m1z = new ListNode(0);
+let m1za = new ListNode(0);
+let m1zb = new ListNode(0);
+let m1zc = new ListNode(0);
+let m1zd = new ListNode(0);
+let m1ze = new ListNode(1);
+m1a.next = m1b;
+m1b.next = m1c;
+m1c.next = m1d;
+m1d.next = m1e;
+m1e.next = m1f;
+m1f.next = m1g;
+m1g.next = m1h;
+m1h.next = m1i;
+m1i.next = m1j;
+m1j.next = m1k;
+m1k.next = m1l;
+m1l.next = m1m;
+m1m.next = m1n;
+m1n.next = m1o;
+m1o.next = m1p;
+m1p.next = m1q;
+m1q.next = m1r;
+m1r.next = m1s;
+m1s.next = m1t;
+m1t.next = m1u;
+m1u.next = m1v;
+m1v.next = m1w;
+m1w.next = m1x;
+m1x.next = m1y;
+m1y.next = m1z;
+m1z.next = m1za;
+m1za.next = m1zb;
+m1zb.next = m1zc;
+m1zc.next = m1zd;
+m1zd.next = m1ze;
+
+let printLinkedListValInArr = ll => {
+    let finalArr = [];
+
+    let pointer = ll;
+    while (pointer) {
+        finalArr.push(pointer.val);
+        pointer = pointer.next;
+    }
+    return finalArr;
+}
+
+console.log(printLinkedListValInArr(m1a));
+
+
+
+// console.log(addTwoNumbers(l1a, l2a));
+
