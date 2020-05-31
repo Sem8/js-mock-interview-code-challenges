@@ -12,7 +12,7 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
  */
 
-// My own solution: passes test case but not submission case
+// My own solution: passes test case but not all submission cases
 /* Pseudocode:
 - Have a pointer for each input linked list, to go thru list
 - Have an empty array for each linked list to prepend the Linked list's values 
@@ -53,35 +53,89 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next;
 }
 
-var addTwoNumbers = function (l1, l2) {
-  let current1 = l1;
-  let current2 = l2;
-  let val1 = [];
-  let val2 = [];
+// let addTwoNumbers = function (l1, l2) {
+//   let current1 = l1;
+//   let current2 = l2;
+//   let val1 = [];
+//   let val2 = [];
 
-  while (current1) {
-    val1.unshift(current1.val);
-    current1 = current1.next;
+//   while (current1) {
+//     val1.unshift(current1.val);
+//     current1 = current1.next;
+//   }
+
+//   while (current2) {
+//     val2.unshift(current2.val);
+//     current2 = current2.next;
+//   }
+
+//   let val1RevNum = parseInt(val1.join(""));
+//   let val2RevNum = parseInt(val2.join(""));
+//   let total = (val1RevNum + val2RevNum).toString();
+
+//   console.log("total: ", total);
+
+//   let totalPointer = total.length - 1;
+//   let eachNode = new ListNode(parseInt(total[totalPointer]));
+//   let head = eachNode;
+
+//   while (totalPointer > 0) {
+//     totalPointer--;
+//     head.next = new ListNode(parseInt(total[totalPointer]));
+//     head = head.next;
+//   }
+//   console.log(printLinkedListValInArr(eachNode));
+//   return eachNode;
+// };
+
+/* Pseudocode: Suggested Solution
+- Declare a variable called finalLinkedList (it'll serve as the linked list we'll return) and let it equal to new ListNode (to create 
+  a linked list) and passing in a value of 0 for now. 
+- Declare another variable called placeHolder and let it equal to finalLinkedList. placeHolder will serve as pointer to finalLinkedList
+- Initialize a variable called sum and let it equal 0 for now
+- Initialize a variable called carryOver and let it equal 0 for now
+- while input linked list 1 (l1) is not null or linked list 2 (l2) is not null
+- Inside while loop, let sum += l1 value then move onto next node by letting l1 eual l1.next
+- Still inside while loop, let sum += l2 value then move onto next node in l2 by getting l2 to equal l2.next
+- Make an if statement of sum is more than or equal to 10 then get sume to equal sum - 10 and carry to equal 1
+- Let placeHolder.next equal to new ListNode passing in the value of sum then get placeHolder to equal placeHolder.next to move the placeHolder
+pointer to this next most recent node
+- Re-set sum to equal 0 and re-set carryOver to equal 0 to do the calculation on the next linked list node.
+- Outside while loop, return finalLinkedList.next (because we started at 0 and the actual linked list of sum values start at 2nd node)
+*/
+
+let addTwoNumbers = (l1, l2) => {
+  let finalLinkedList = new ListNode(0);
+  let placeHolder = finalLinkedList;
+  let sum = 0;
+  let carryOver = 0;
+
+  while (l1 !== null || l2 !== null || sum > 0) {
+    if (l1 !== null) {
+      sum =+ l1.val;
+      l1 = l1.next;
+    }    
+
+    if (l2 !== null) {
+      sum += l2.val;
+      l2 = l2.next;
+    }
+
+    if (sum >= 10) {
+      sum = sum - 10;
+      carryOver = 1;
+    }
+
+    placeHolder.next = new ListNode(sum);
+    placeHolder = placeHolder.next;
+
+    sum = 0;
+    sum += carryOver;
+    carryOver = 0;
   }
 
-  while (current2) {
-    val2.unshift(current2.val);
-    current2 = current2.next;
-  }
-  let val1RevNum = parseInt(val1.join(""));
-  let val2RevNum = parseInt(val2.join(""));
-  let total = (val1RevNum + val2RevNum).toString();
-
-  let totalPointer = total.length - 1;
-  let eachNode = new ListNode(parseInt(total[totalPointer]));
-  let head = eachNode;
-
-  while (totalPointer > 0) {
-    totalPointer--;
-    head.next = new ListNode(parseInt(total[totalPointer]));
-    head = head.next;
-  }
-  return eachNode;
+  console.log(printLinkedListValInArr(finalLinkedList.next));
+  return finalLinkedList.next;
 };
 
 let l1a = new ListNode(2);
@@ -158,20 +212,30 @@ m1zb.next = m1zc;
 m1zc.next = m1zd;
 m1zd.next = m1ze;
 
-let printLinkedListValInArr = ll => {
-    let finalArr = [];
+let m2a = new ListNode(5);
+let m2b = new ListNode(6);
+let m2c = new ListNode(4);
+m2a.next = m2b;
+m2b.next = m2c;
 
-    let pointer = ll;
-    while (pointer) {
-        finalArr.push(pointer.val);
-        pointer = pointer.next;
-    }
-    return finalArr;
-}
+let a1a = new ListNode(5);
 
-console.log(printLinkedListValInArr(m1a));
+let a2a = new ListNode(5);
 
+let printLinkedListValInArr = (ll) => {
+  let finalArr = [];
 
+  let pointer = ll;
+  while (pointer) {
+    finalArr.push(pointer.val);
+    pointer = pointer.next;
+  }
+  return finalArr;
+};
 
-// console.log(addTwoNumbers(l1a, l2a));
+// console.log(printLinkedListValInArr(m1a));
+// console.log(printLinkedListValInArr(m2a));
 
+console.log(addTwoNumbers(l1a, l2a));
+// console.log(addTwoNumbers(m1a, m2a));
+// console.log(addTwoNumbers(a1a, a2a));
