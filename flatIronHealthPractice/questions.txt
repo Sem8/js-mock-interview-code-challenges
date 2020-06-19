@@ -1,0 +1,9 @@
+1. recursion with array
+2. Finding overlap between several sets of data  
+3. Build an event consumer that takes in events and tracks data over time, returns different strings based on the events 
+4. Given an array of arrays representing starting and destination currencies and exchange rates and an array of arrays 
+representing starting and destination currencies, return the exchange rate between each starting and destination currency. 
+You may have to convert between multiple currencies to make the exchange work. Maybe there's a better way to do it, but it 
+seemed like a graph traversal problem to me. 
+5. Djikra's algorithm
+6. find words given a set of numbers on a T9 pad  
