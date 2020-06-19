@@ -35,21 +35,25 @@ Explanation: After 1 move [2 -> 3], the array could be [1, 2, 3].
 let minUniqueArrSum = (arr) => {
   let counter = {};
   let uniqueArr = [];
+  let moves = 0;
 
   for (let i = 0; i < arr.length; i++) {
     let placeHolder = arr[i];
 
     while (counter[placeHolder]) {
       placeHolder++;
+      moves++;
     }
     counter[placeHolder] = 1;
     uniqueArr.push(placeHolder);
   }
 
-  console.log('uniqueArr: ', uniqueArr);
-  return uniqueArr.reduce(
-    (firstParam, secondParam) => firstParam + secondParam
-  );
+//   console.log('uniqueArr: ', uniqueArr);
+//   return uniqueArr.reduce(
+//     (firstParam, secondParam) => firstParam + secondParam
+//   );
+
+return moves;
 };
 
 let arr1 = [2, 3, 4, 5];
@@ -57,7 +61,7 @@ let arr2 = [1, 2, 2];
 let arr3 = [2, 2, 4, 5];
 let arr4 = [3, 2, 1, 2, 1, 7]; // [3, 2, 1, 4, 5, 7]
 
-console.log(minUniqueArrSum(arr1)); // 14
-console.log(minUniqueArrSum(arr2)); // 6
-console.log(minUniqueArrSum(arr3)); // 14
-console.log(minUniqueArrSum(arr4)); // 22
+console.log(minUniqueArrSum(arr1)); // 14 ; // 0
+console.log(minUniqueArrSum(arr2)); // 6 ; // 1
+console.log(minUniqueArrSum(arr3)); // 14 ; // 1
+console.log(minUniqueArrSum(arr4)); // 22 ; // 6
