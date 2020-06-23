@@ -1,9 +1,47 @@
 1. recursion with array
-2. Finding overlap between several sets of data  
+2. Finding overlap between several sets of data ---- 
 3. Build an event consumer that takes in events and tracks data over time, returns different strings based on the events 
+https://stackoverflow.com/questions/51110935/custom-event-emitter-consumers-in-browser-javascript-outside-dom
+https://www.sitepoint.com/javascript-custom-events/
+https://gist.github.com/mudge/5830382
+https://thoughtbot.com/blog/custom-event-emitters-in-javascript
+
 4. Given an array of arrays representing starting and destination currencies and exchange rates and an array of arrays 
 representing starting and destination currencies, return the exchange rate between each starting and destination currency. 
 You may have to convert between multiple currencies to make the exchange work. Maybe there's a better way to do it, but it 
 seemed like a graph traversal problem to me. 
 5. Djikra's algorithm
 6. find words given a set of numbers on a T9 pad  
+7. implement a function that when given a 2D array of 1's and 0's returns the width, height, and starting points of a rectangle
+ (being represented by 1's)
+ 8. Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is 
+ formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by 
+ water.
+
+Example 1:
+
+Input:
+11110
+11010
+11000
+00000
+
+9. Given a string of numbers, find all the valid T9 words that can be associated with them
+eg: "28" -> ["AS", "AT", "AU"] or "223" -> ["ACE", "BAD", ...]  
+10. find max number of distinct value in a path of a binary search tree 
+11. Topological sort
+https://www.tutorialspoint.com/Topological-sorting-using-Javascript-DFS
+12. Find max connected component in an image 
+https://www.geeksforgeeks.org/largest-connected-component-on-a-grid/
+13. Coin Change Probem
+14. Given a hexagonal tile game, where there is a letter on each tile, write an algorithm to determine if a given word exists 
+by traversing the graph without repeatedly visiting nodes - Senior software engineer interview
+15. Merge integer ranges,  given [2, 5] [4, 8] [10, 12], return [2, 8] [10, 12] 
+16. Given a string representing taken seats on a plane and a number N representing the rows on a plane, return the amount of 
+seating arrangements for a family of 3. Seating between isles is not a possible arrangement. The seating columns are as follows: 
+ABC | DEFG| HJK  
+
+
+https://www.geeksforgeeks.org/find-possible-words-phone-digits/
+https://stackoverflow.com/questions/30048388/javascript-recursive-array-flattening
+https://www.javascripttutorial.net/javascript-recursive-function/
