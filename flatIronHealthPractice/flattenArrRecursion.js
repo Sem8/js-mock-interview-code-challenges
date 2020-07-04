@@ -13,24 +13,23 @@
  */
 
 let flattenArr = (nestedArr) => {
-    let flatArr = [];
+  let flatArr = [];
 
-    nestedArr.forEach(eachArrElem => {
-        if (Array.isArray(eachArrElem)) {
-            flatArr = flatArr.concat(flattenArr(eachArrElem));
-        }
-        else {
-            flatArr.push(eachArrElem);
-        }
-    });
-    return flatArr;
-}
+  nestedArr.forEach((eachArrElem) => {
+    if (Array.isArray(eachArrElem)) {
+      flatArr = flatArr.concat(flattenArr(eachArrElem));
+    } else {
+      flatArr.push(eachArrElem);
+    }
+  });
+  return flatArr;
+};
 
 let example = [[1, 2], 3, [4, 5, [6, 7, 8, [9, [10]]]]];
 // console.log(flattenArr(example)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 let shallowNesting = example.reduce((acc, val) => {
-    return acc.concat(val);
+  return acc.concat(val);
 }, []);
 
 console.log(shallowNesting); // [ 1, 2, 3, 4, 5, [ 6, 7, 8, [ 9, [Array] ] ] ]

@@ -41,6 +41,7 @@ class EventEmitter {
 
   trigger(eventName, ...rest) {
     //   console.log('rest: ', rest);
+    // console.log('this.events[eventName]: ', this.events[eventName]); // [ [Function] ]
     if (this.events[eventName]) {
       this.events[eventName].forEach(cb => {
         // cb.apply(null, [rest]);
@@ -65,3 +66,4 @@ ee.on('change', (nameOfEvent) => {
 });
 
 ee.trigger('change', 'firstParam', 'secondParam');
+

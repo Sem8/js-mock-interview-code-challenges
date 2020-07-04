@@ -102,3 +102,25 @@ pointsTwo = [
 
 console.log(minTimeToVisitAllPoints(pointsOne)); // 7
 console.log(minTimeToVisitAllPoints(pointsTwo)); // 5
+
+// Solution 2: 64 ms, faster than 70.88% 
+// Memory Usage: 36.8 MB, less than 24.76% of JavaScript online submissions 
+var minTimeToVisitAllPoints = function(points) {
+  if (points.length < 2) return 0;
+  
+  let time = 0;
+  
+  for (let i = 1; i < points.length; i++) {
+  // Calculate the distances between current point and previous point for 
+  // each axis
+    const x = Math.abs(points[i - 1][0] - points[i][0]);
+    const y = Math.abs(points[i - 1][1] - points[i][1]);
+    
+	// For each distance the time will be the max value between X and Y
+    // So we can get the total time by plus the max value of each distance
+    time += Math.max(x, y);
+  }
+  
+  return time;
+    
+};
