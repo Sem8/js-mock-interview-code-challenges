@@ -71,13 +71,13 @@ Constraints:
 var maxProfit = function (prices) {
   let profit = 0;
 
-  let minElem = prices[0];
+//   let minElem = prices[0];
 
   for (let i = 0; i < prices.length; i++) {
     let maxDifference = 0;
-    while (prices[i] < minElem) {
-      minElem = prices[i];
-    }
+    // while (prices[i] < minElem) {
+    //   minElem = prices[i];
+    // }
     while (prices[i + 1] - prices[i] > maxDifference) {
       maxDifference = prices[i + 1] - prices[i];
       profit += maxDifference;
