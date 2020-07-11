@@ -1,0 +1,15 @@
+1. Palindrome
+2. FizzBuzz
+3. Anagram
+4. Find the Vowels
+5. Fibonacci
+6. All the code challenges from 'That JS Dude'
+7. All the code challenges from h5bp
+8. All the code challenges from Yangshun
+9. How to build a calculator
+10. How to build a form validation
+11. How to build infinite scroll
+12. How to build search autocomplete? My pramp frontend assignment
+13. How to build that timeline from FCB health
+14. In place sorting of even and odd numbers
+15. Search debounce (on YouTube tutorial)
