@@ -16,7 +16,7 @@ Input: ["H","a","n","n","a","h"]
 Output: ["h","a","n","n","a","H"]
  */
 
-/* Pseudocode:
+/* Pseudocode: - My only solution seems to have the best runtime compared to other leetcode submitted solutions
 - Get the length of half the array, if array lengt is odd then lower half of the array.
 - Loop through input array till the lower half of the length and at every current index switch the element at current index with 
 the element at the other end from the current index (arr.length - 1 - i)
