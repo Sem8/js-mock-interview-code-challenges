@@ -32,61 +32,50 @@ Constraints:
  */
 
 /*Pseudocode:
-- Have a profit variable set to 0
-- Have a minimumElem variable set to the first element in input array
-- Have a maxElem variable declared to nothing for now
-- Loop through the array starting at index 1, 
-   - check if element at current index (initially index 1) is smaller than initial minimumElem then reset minimumElem to 
-   this element at this current index
-      - If element at current index + 1 (i+1) is larger than element at current index i then set the profit variable to element at 
-      index i+1 minus element at index i
-      - then set minimumElem variable to element at i+2  
-   - else, if element at index 1 is bigger than initial minimumElem then do nothing, it'll go to the next index at index 2 & check again
+- Declare a profit variable initialized to 0
+- Declare a maxDifference variable initialized to 0
+- Loop through the array and check that while input array element at current index plus 1 (i + 1) minus element from current index i is
+more than maxDifference then re-set maxDifference to prices[i+1] - prices[i]
+- Outside while loop, let profit += maxDifference and re-set maxDifference to 0
+- outside for loop, return profit.
  */
+
+var maxProfit = function (prices) {
+  let profit = 0;
+  let maxDifference = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    while (prices[i + 1] - prices[i] > maxDifference) {
+      maxDifference = prices[i + 1] - prices[i];
+    }
+    profit += maxDifference;
+    maxDifference = 0;
+  }
+
+  return profit;
+};
+
+/*Sligtly better refactored code solution from Kevin Naughton
+but same idea as mine
+*/
 
 // var maxProfit = function (prices) {
 //   let profit = 0;
 
-//   let minElem = prices[0];
+//   if (prices.length <= 0) {
+//     return 0;
+//   }
 
-//   for (let i = 1; i < prices.length; i++) {
-//     if (prices[i] < minElem) {
-//       minElem = prices[i];
-//       if (prices[i + 1] > minElem && prices[i + 2] < prices[i + 1]) {
-//         let difference = prices[i + 1] - prices[i];
-//         profit += difference;
-//         minElem = prices[i + 2];
-//       }
-//     } else {
-//       while (minElem < prices[i]) {
-//         let maxElem = prices[i];
-//         continue;
-//       }
+//   for (let i = 0; i < prices.length; i++) {
+//     if (prices[i + 1] > prices[i]) {
+//       profit += prices[i + 1] - prices[i];
 //     }
 //   }
 
 //   return profit;
 // };
 
-var maxProfit = function (prices) {
-  let profit = 0;
-
-//   let minElem = prices[0];
-
-  for (let i = 0; i < prices.length; i++) {
-    let maxDifference = 0;
-    // while (prices[i] < minElem) {
-    //   minElem = prices[i];
-    // }
-    while (prices[i + 1] - prices[i] > maxDifference) {
-      maxDifference = prices[i + 1] - prices[i];
-      profit += maxDifference;
-    }
-  }
-
-  return profit;
-};
-
 console.log(maxProfit([7, 1, 5, 3, 6, 4])); // 7
 console.log(maxProfit([1, 2, 3, 4, 5])); // 4
 console.log(maxProfit([7, 6, 4, 3, 1])); // 0
+console.log(maxProfit([100, 180, 260, 310, 40, 535, 695])); // 865
