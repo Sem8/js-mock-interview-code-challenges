@@ -43,20 +43,65 @@ for (int i = 0; i < len; i++) {
 
  */
 
-var removeDuplicates = function(nums) {
-    let pointer = 0;
+// var removeDuplicates = function(nums) {
+//     let pointer = 0;
 
-    while (pointer < nums.length) {
-        if (nums[pointer + 1] === nums[pointer]) {
-            nums.splice(pointer + 1, 1);
-        } else {
-            pointer++;
-        }
+//     while (pointer < nums.length) {
+//         if (nums[pointer + 1] === nums[pointer]) {
+//             nums.splice(pointer + 1, 1);
+//         } else {
+//             pointer++;
+//         }
+//     }
+//     console.log('updated nums: ', nums);
+//     return nums.length;
+
+// };
+
+// Leetcode solution - using 2 pointers
+/* Pseudocode:
+- Have 2 pointers a slow pointer and fast pointer, slowPointer variable 
+initialized to 0, and fast pointer will be the i variable in for loop
+- Have a for loop, starting at index 1 and going till end of array
+   - inside for loop, have an if statement of if the next element from current
+   index (element at i+1) is not the same as element from current index i, only
+   then increment slowPointer by 1 and swap element at slowPointer index with
+   element at current index i
+- outside for loop return slowPointer + 1 (it'll give number of swaps + 1 which
+equals number of unique elements which is the array length we're looking for)
+ */
+
+var removeDuplicates = function (nums) {
+  let slowPointer = 0;
+
+  if (nums.length <= 0) {
+    return 0;
+  }
+
+  let i = 1;
+
+  for (i; i < nums.length; i++) {
+    if (nums[slowPointer] !== nums[i]) {
+      slowPointer++;
+      nums[slowPointer] = nums[i];
     }
-    console.log('updated nums: ', nums);
-    return nums.length;
-    
+  }
+  return slowPointer + 1;
 };
 
-console.log(removeDuplicates([1,1,2])); // arr = [1, 2] ; answer: 2 (length)
-console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4])); // arr = [0, 1, 2, 3, 4] ; answer: 5 (length)
+// Another solution from Kevin Naughton - but not that great time complexity
+// with only 13.5% faster than others
+
+// var removeDuplicates = function(nums) {
+//     let index = 1;
+//     for (let i = 0; i < nums.length -1; i++) {
+//         if (nums[i] !== nums[i+1]) {
+//             nums[index++] = nums[i + 1]
+//         }
+//     }
+//     console.log('updated nums: ', nums);
+//     return index;
+// };
+
+console.log(removeDuplicates([1, 1, 2])); // arr = [1, 2] ; answer: 2 (length)
+console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])); // arr = [0, 1, 2, 3, 4] ; answer: 5 (length)
