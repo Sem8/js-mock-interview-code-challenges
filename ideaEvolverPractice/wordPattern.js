@@ -52,11 +52,36 @@ var wordPattern = function(pattern, str) {
 
     // console.log('strNum: ', strNum);
     return patternNum === strNum
-    
+
 };
 
-console.log('1: ', wordPattern("abba", "dog cat cat dog")); // true
-console.log('2: ', wordPattern("abba", "dog cat cat fish")); // false
-console.log('3: ', wordPattern("aaaa", "dog cat cat dog")); // false
-console.log('4: ', wordPattern("abba", "dog dog dog dog")); // false
-console.log('5: ', wordPattern("abba", "dog cat cat dog cat")); // false
+/* Leetcode solution from Nick White but has an even worse time complexity */
+var wordPattern = function (pattern, str) {
+  let strArr = str.split(" ");
+  let hashTable = {};
+
+  if (strArr.length !== pattern.length) {
+    return false;
+  }
+
+  for (let i = 0; i < pattern.length; i++) {
+    if (hashTable[pattern[i]] == undefined) {
+      if (Object.values(hashTable).indexOf(strArr[i]) != -1) {
+        return false;
+      }
+      hashTable[pattern[i]] = strArr[i];
+    } else {
+      if (hashTable[pattern[i]] !== strArr[i]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+
+console.log("1: ", wordPattern("abba", "dog cat cat dog")); // true
+console.log("2: ", wordPattern("abba", "dog cat cat fish")); // false
+console.log("3: ", wordPattern("aaaa", "dog cat cat dog")); // false
+console.log("4: ", wordPattern("abba", "dog dog dog dog")); // false
+console.log("5: ", wordPattern("abba", "dog cat cat dog cat")); // false

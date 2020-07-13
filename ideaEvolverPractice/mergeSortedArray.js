@@ -28,62 +28,100 @@ num1 and num2 array, respectively
    nums1 (which will be 0) and splice in element from nums2 at nums2Pointer into nums1 at index nums1Pointer + 2
  */
 
+// var merge = function (nums1, m, nums2, n) {
+//   let nums1Pointer = 0;
+//   let nums2Pointer = 0;
+//   let updatedNums1Len = m;
+
+//   if (!nums1) {
+//     return [];
+//   }
+//   if (nums2.length === 0) {
+//     return nums1;
+//   }
+
+//   if (nums1.length === 1) {
+//     nums1.splice(0, 1, nums2[0]);
+//     return nums1;
+//   }
+
+//   while (nums2Pointer < nums2.length) {
+//     if (nums1[nums1Pointer] < nums2[nums2Pointer] ) {
+//       // nums1[nums1Pointer] != 0
+//       while (nums1[nums1Pointer] <= nums2[nums2Pointer] && nums1Pointer < updatedNums1Len) {
+//         nums1Pointer++;
+//       }
+//       nums1.pop();
+//       nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
+//       updatedNums1Len++;
+//       nums1Pointer += 1;
+//       nums2Pointer++;
+
+//       // nums1[nums1Pointer] == 0
+//       if (nums1Pointer > updatedNums1Len) {
+//         nums1.pop();
+//         nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
+//         updatedNums1Len++;
+//         nums1Pointer++;
+//         nums2Pointer++
+//     }
+//     }
+//      else if (nums1[nums1Pointer] >= nums2[nums2Pointer]) {
+//       nums1.pop();
+//       nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
+//       updatedNums1Len++;
+//       nums1Pointer++;
+//       nums2Pointer++;
+//     }
+//   }
+//   return nums1;
+// };
+
+/* Solution by Keep on Coding */
+/* Pseudocode:
+- Decrement m and n first to get at last index of each array
+- Declare a variable called idx and set it equal to num1.length -1 (last element in nums1 array)
+- while idx is more than 0
+   - if m is less than 0 (nums1 array is empty) then set nums1 at idx equal to nums2 at index n & decrement n
+   - if n is less than 0 (nums2 array is empty) then set nums1 at idx equal to nums1 at index m
+   - Otherwise (if nums1 and nums2 array both have at least 1 element),
+      - if element in nums1 at index m is more than element in nums2 at index n then set nums1 at idx equal to element from nums1
+      array at index m
+      - else (if element in nums1 at index m is less than element in nums2 at index n) then set nums1 at idx equal to element from
+      nums2 array at index n
+   - Decrement idx
+ */
+
 var merge = function (nums1, m, nums2, n) {
-  let nums1Pointer = 0;
-  let nums2Pointer = 0;
-  let updatedNums1Len = m;
+  m--;
+  n--;
 
-  if (!nums1) {
-    return [];
-  }
-  if (nums2.length === 0) {
-    return nums1;
-  }
+  let idx = nums1.length - 1;
 
-  if (nums1.length === 1) {
-    nums1.splice(0, 1, nums2[0]);
-    return nums1;
-  }
-
-  while (nums2Pointer < nums2.length) {
-    if (nums1[nums1Pointer] < nums2[nums2Pointer] ) {
-      // nums1[nums1Pointer] != 0
-      while (nums1[nums1Pointer] <= nums2[nums2Pointer] && nums1Pointer < updatedNums1Len) {
-        nums1Pointer++;
+  while (idx >= 0) {
+    if (m < 0) {
+      nums1[idx] = nums2[n--];
+    } else if (n < 0) {
+      nums1[idx] = nums1[m--];
+    } else {
+      if (nums1[m] > nums2[n]) {
+        nums1[idx] = nums1[m--];
+      } else {
+        nums1[idx] = nums2[n--];
       }
-      nums1.pop();
-      nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
-      updatedNums1Len++;
-      nums1Pointer += 1;
-      nums2Pointer++;
+    }
 
-      // nums1[nums1Pointer] == 0
-      if (nums1Pointer > updatedNums1Len) {
-        nums1.pop();
-        nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
-        updatedNums1Len++;
-        nums1Pointer++;
-        nums2Pointer++
-    }
-    }
-     else if (nums1[nums1Pointer] >= nums2[nums2Pointer]) {
-      nums1.pop();
-      nums1.splice(nums1Pointer, 0, nums2[nums2Pointer]);
-      updatedNums1Len++;
-      nums1Pointer++;
-      nums2Pointer++;
-    }
+    idx--;
   }
+
   return nums1;
 };
 
 console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)); // [1,2,2,3,5,6]
-console.log(merge([1, 2, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)); // [1,2,2,2,3,5,6]
+console.log(merge([1, 2, 2, 3, 0, 0, 0], 4, [2, 5, 6], 3)); // [1,2,2,2,3,5,6]
 console.log(merge([1, 2, 3, 0, 0, 0], 3, [3, 5, 6], 3)); // [1,2,3,3,5,6]
 console.log(merge([1, 2, 3, 0, 0, 0], 3, [4, 5, 6], 3)); // [1, 2, 3, 4, 5, 6]
-console.log(merge([-1,0,0,3,3,3,0,0,0], 6, [1,2,2], 3)); // [-1,0,0,1,2,2,3,3,3]
+console.log(merge([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3)); // [-1,0,0,1,2,2,3,3,3]
 console.log(merge([0], 0, [1], 1)); // [1]
 console.log(merge([1], 1, [], 0)); // [1]
 console.log(merge([2, 0], 1, [1], 1)); // [1, 2]
-
-
