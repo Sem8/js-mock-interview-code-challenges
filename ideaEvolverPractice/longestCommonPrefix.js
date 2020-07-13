@@ -36,47 +36,79 @@ that's why we start at index 1)
     in outer i index.  
  */
 
+// var longestCommonPrefix = function (strs) {
+//   if (strs.length <= 0) {
+//     return "";
+//   }
+//   if (strs.length == 1) {
+//     return strs[0];
+//   }
+
+//   let lastCommonStr = "";
+//   let finalCommonStr = "";
+
+//   let firstPointer = 0;
+//   let secondPointer = 0;
+
+//   while (strs[0][firstPointer] === strs[1][secondPointer]) {
+//     if (strs[0] === "" || strs[1] === "") {
+//       return "";
+//     }
+//     lastCommonStr += strs[0][firstPointer];
+//     firstPointer++;
+//     secondPointer++;
+//     if (
+//       firstPointer >= strs[0].length ||
+//       secondPointer >= strs[1].length ||
+//       strs[0][firstPointer] !== strs[1][secondPointer]
+//     ) {
+//       break;
+//     }
+//   }
+
+//   for (let i = 2; i < strs.length; i++) {
+//     let len =
+//       lastCommonStr.length > strs[i].length
+//         ? strs[i].length
+//         : lastCommonStr.length;
+//     for (let j = 0; j < len; j++) {
+//       if (strs[i][j] !== lastCommonStr[j]) {
+//         break;
+//       } else if (strs[i][j] === lastCommonStr[j]) {
+//         finalCommonStr += lastCommonStr[j];
+//       }
+//     }
+//     lastCommonStr = finalCommonStr;
+//     finalCommonStr = "";
+//   }
+
+//   return lastCommonStr;
+// };
+
+/* Leetcode solution 1 */
+/* Pseudocode:
+- Declare a variable called prefix and set it to the first element from input array.
+- Take care of an edge case where if the array of strings is empty return empty string ''
+- Loop through the array of strings starting from index 1 @ 2nd string since 1st string has already been taken up by prefix
+   - In for loop, have a while loop of while index of prefix at second string is not 0 then keep chopping off 1 character
+   from the end of prefix string using the substring method. This will keep chopping off characters from end till substring 
+   prefix matches current string  
+- Outside for loop, return prefix string
+ */
+
 var longestCommonPrefix = function (strs) {
-  if (strs.length <= 0) {
+  if (strs.length === 0) {
     return "";
   }
-  if (strs.length == 1) {
-    return strs[0];
+  let prefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+    }
   }
 
-  let lastCommonStr = "";
-  let finalCommonStr = "";
-
-  let firstPointer = 0;
-  let secondPointer = 0;
-
-    while (strs[0][firstPointer] === strs[1][secondPointer]) {
-        if (strs[0] === '' || strs[1] === '') {
-            return '';
-        }
-      lastCommonStr += strs[0][firstPointer];
-      firstPointer++;
-      secondPointer++;
-      if (firstPointer >= strs[0].length || secondPointer >= strs[1].length || strs[0][firstPointer] !== strs[1][secondPointer]) {
-        break;
-      }
-    }
-
-
-  for (let i = 2; i < strs.length; i++) {
-      let len = lastCommonStr.length > strs[i].length ? strs[i].length : lastCommonStr.length;
-    for (let j = 0; j < len; j++) {
-      if (strs[i][j] !== lastCommonStr[j]) {
-        break;
-      } else if (strs[i][j] === lastCommonStr[j]) {
-        finalCommonStr += lastCommonStr[j];
-      }
-    }
-    lastCommonStr = finalCommonStr;
-    finalCommonStr = "";
-  }
-
-  return lastCommonStr;
+  return prefix;
 };
 
 console.log("1: ", longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
@@ -84,23 +116,11 @@ console.log("2: ", longestCommonPrefix(["flight", "flow", "flower"])); // 'fl'
 console.log("3: ", longestCommonPrefix(["dog", "racecar", "car"])); // ''
 console.log("4: ", longestCommonPrefix(["flow", "flower", "flight"])); // 'fl'
 console.log("5: ", longestCommonPrefix(["flower", "flowering", "flight"])); // 'fl'
-console.log(
-  "6: ",
-  longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor"])
-); // 'fl'
-console.log(
-  "7: ",
-  longestCommonPrefix([
-    "flower",
-    "flow",
-    "flight",
-    "flaunt",
-    "flavor",
-    "trinity",
-  ])
-); // ''
+console.log("6: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor"])); // 'fl'
+console.log("7: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor", "trinity"])); // ''
 console.log("8: ", longestCommonPrefix(["flower", "flight"])); // 'fl'
 console.log("9: ", longestCommonPrefix(["flower", "flow", "fl"])); // 'fl'
 console.log("10: ", longestCommonPrefix([""])); // ''
 console.log("11: ", longestCommonPrefix(["c", "c"])); // 'c'
 console.log("12: ", longestCommonPrefix(["", ""])); // ''
+console.log("13: ", longestCommonPrefix(["flow", "flow", "flight"])); // 'fl'
