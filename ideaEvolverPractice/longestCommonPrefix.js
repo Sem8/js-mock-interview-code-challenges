@@ -96,31 +96,47 @@ that's why we start at index 1)
 - Outside for loop, return prefix string
  */
 
+// var longestCommonPrefix = function (strs) {
+//   if (strs.length === 0) {
+//     return "";
+//   }
+//   let prefix = strs[0];
+
+//   for (let i = 1; i < strs.length; i++) {
+//     while (strs[i].indexOf(prefix) !== 0) {
+//       prefix = prefix.substring(0, prefix.length - 1);
+//     }
+//   }
+
+//   return prefix;
+// };
+
+
+/* Leetcode solution 2: - Not better time complexity than solution 1 */
 var longestCommonPrefix = function (strs) {
-  if (strs.length === 0) {
-    return "";
-  }
-  let prefix = strs[0];
-
-  for (let i = 1; i < strs.length; i++) {
-    while (strs[i].indexOf(prefix) !== 0) {
-      prefix = prefix.substring(0, prefix.length - 1);
+    if (strs == null || strs.length == 0) return "";
+    for (let i = 0; i < strs[0].length; i++){
+        console.log('i: ', i);
+        let c = strs[0].charAt(i);
+        for (let j = 1; j < strs.length; j++) {
+            if (i == strs[j].length || strs[j].charAt(i) != c) {
+                
+                return strs[0].substring(0, i);
+            }
+        }
     }
-  }
-
-  return prefix;
-};
-
-console.log("1: ", longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
+    return strs[0];
+  };
+// console.log("1: ", longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
 console.log("2: ", longestCommonPrefix(["flight", "flow", "flower"])); // 'fl'
-console.log("3: ", longestCommonPrefix(["dog", "racecar", "car"])); // ''
-console.log("4: ", longestCommonPrefix(["flow", "flower", "flight"])); // 'fl'
-console.log("5: ", longestCommonPrefix(["flower", "flowering", "flight"])); // 'fl'
-console.log("6: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor"])); // 'fl'
-console.log("7: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor", "trinity"])); // ''
-console.log("8: ", longestCommonPrefix(["flower", "flight"])); // 'fl'
-console.log("9: ", longestCommonPrefix(["flower", "flow", "fl"])); // 'fl'
-console.log("10: ", longestCommonPrefix([""])); // ''
-console.log("11: ", longestCommonPrefix(["c", "c"])); // 'c'
-console.log("12: ", longestCommonPrefix(["", ""])); // ''
-console.log("13: ", longestCommonPrefix(["flow", "flow", "flight"])); // 'fl'
+// console.log("3: ", longestCommonPrefix(["dog", "racecar", "car"])); // ''
+// console.log("4: ", longestCommonPrefix(["flow", "flower", "flight"])); // 'fl'
+// console.log("5: ", longestCommonPrefix(["flower", "flowering", "flight"])); // 'fl'
+// console.log("6: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor"])); // 'fl'
+// console.log("7: ", longestCommonPrefix(["flower", "flow", "flight", "flaunt", "flavor", "trinity"])); // ''
+// console.log("8: ", longestCommonPrefix(["flower", "flight"])); // 'fl'
+// console.log("9: ", longestCommonPrefix(["flower", "flow", "fl"])); // 'fl'
+// console.log("10: ", longestCommonPrefix([""])); // ''
+// console.log("11: ", longestCommonPrefix(["c", "c"])); // 'c'
+// console.log("12: ", longestCommonPrefix(["", ""])); // ''
+// console.log("13: ", longestCommonPrefix(["flow", "flow", "flight"])); // 'fl'
