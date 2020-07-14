@@ -48,43 +48,76 @@ let isPalindrome = (str) => {
 
 var longestPalindrome = function (s) {
   s = s.toLocaleLowerCase();
+  let finalArr = [];
+  finalArr.push(s[0]);
 
-if (!s) {
-      return '';
+  if (!s) {
+    return "";
   }
   if (s.length === 1 || (s.length === 2 && s[0] !== s[1])) {
-      return s[0];
+    // return s[0];
+    return finalArr[0];
   }
 
   let start = 0;
   let end = s.length - 1;
 
   while (start < end) {
-    while (s[start] !== s[end] && start + 1 < end) {
+    // while (s[start] !== s[end] && start + 1 < end) {
+    //   end--;
+    // }
+
+    // if (s[start] !== s[end]) {
+    //   start++;
+    //   end = s.length - 1;
+    // } else {
+    //   if (isPalindrome(s.substring(start, end + 1))) {
+    //     finalArr.push(s.substring(start, end + 1));
+    //     // return s.substring(start, end + 1);
+    //     start++;
+    //   } else {
+    //       end--;
+    //   }
+    // };
+
+    while (s[start] !== s[end]) {
       end--;
     }
 
-    if (s[start] !== s[end]) {
-      start++;
-      end = s.length - 1;
+    if (isPalindrome(s.substring(start, end + 1))) {
+      finalArr.push(s.substring(start, end + 1));
     } else {
-      if (isPalindrome(s.substring(start, end + 1))) {
-        return s.substring(start, end + 1);
-      } else {
-          end--;
+      while (!isPalindrome(s.substring(start, end + 1))) {
+        end--;
       }
+      finalArr.push(s.substring(start, end + 1));
+    }
+
+    start++;
+    end = s.length - 1;
+  }
+
+  let longestLen = -Infinity;
+  let longestStr;
+
+  for (let i = 0; i < finalArr.length; i++) {
+    if (finalArr[i].length > longestLen) {
+      longestLen = finalArr[i].length;
+      longestStr = finalArr[i];
     }
   }
 
-  return s[0];
+  // console.log('longestStr: ', longestStr);
+  return longestStr;
 };
 
-console.log('1: ', longestPalindrome("babad")); // 'bab' or 'aba'
-console.log('2: ', longestPalindrome("cbbd")); // 'bb'
-console.log('3: ', longestPalindrome("forgeeksskeegfor")); // "geeksskeeg"
-console.log('4: ', longestPalindrome("Geeks")); // "ee"
-console.log('5: ', longestPalindrome("a")); // "a"
-console.log('6: ', longestPalindrome("")); // ""
-console.log('7: ', longestPalindrome("ac")); // "a"
-console.log('8: ', longestPalindrome("bb")); // "bb"
-console.log('9: ', longestPalindrome("abacab")); // "bacab"
+console.log("1: ", longestPalindrome("babad")); // 'bab' or 'aba'
+console.log("2: ", longestPalindrome("cbbd")); // 'bb'
+console.log("3: ", longestPalindrome("forgeeksskeegfor")); // "geeksskeeg"
+console.log("4: ", longestPalindrome("Geeks")); // "ee"
+console.log("5: ", longestPalindrome("a")); // "a"
+console.log("6: ", longestPalindrome("")); // ""
+console.log("7: ", longestPalindrome("ac")); // "a"
+console.log("8: ", longestPalindrome("bb")); // "bb"
+console.log("9: ", longestPalindrome("abacab")); // "bacab"
+console.log("10: ", longestPalindrome("aaabaaaa")); // "aaabaaa"
