@@ -1,30 +1,30 @@
 /* Determine if a string is palindrome or not */
 
-// let palindrome = (str) => {
-//   let finalRes = false;
+let palindrome = (str) => {
+  let finalRes = false;
 
-//   for (let i = 0; i < Math.floor(str.length / 2); i++) {
-//     if (str[i] === str[str.length - 1 - i]) {
-//       finalRes = true;
-//     } else {
-//       finalRes = false;
-//       return finalRes;
-//     }
-//   }
-//   return finalRes;
-// };
+  for (let i = 0; i < Math.floor(str.length / 2); i++) {
+    if (str[i] === str[str.length - 1 - i]) {
+      finalRes = true;
+    } else {
+      finalRes = false;
+      return finalRes;
+    }
+  }
+  return finalRes;
+};
 
-// let palindrome = (str) => {
-//     str = str.toLocaleLowerCase();
-//     console.log('str: ', str);
+let palindrome = (str) => {
+    str = str.toLocaleLowerCase();
+    console.log('str: ', str);
 
-//   for (let i = 0; i < Math.floor(str.length / 2); i++) {
-//     if (str[i] !== str[str.length - 1 - i]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// };
+  for (let i = 0; i < Math.floor(str.length / 2); i++) {
+    if (str[i] !== str[str.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+};
 
 let palindrome = (str) => {
   str = str.toLocaleLowerCase();
