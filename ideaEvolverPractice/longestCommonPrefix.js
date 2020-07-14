@@ -96,39 +96,79 @@ that's why we start at index 1)
 - Outside for loop, return prefix string
  */
 
-// var longestCommonPrefix = function (strs) {
-//   if (strs.length === 0) {
-//     return "";
-//   }
-//   let prefix = strs[0];
-
-//   for (let i = 1; i < strs.length; i++) {
-//     while (strs[i].indexOf(prefix) !== 0) {
-//       prefix = prefix.substring(0, prefix.length - 1);
-//     }
-//   }
-
-//   return prefix;
-// };
-
-
-/* Leetcode solution 2: - Not better time complexity than solution 1 */
 var longestCommonPrefix = function (strs) {
-    if (strs == null || strs.length == 0) return "";
-    for (let i = 0; i < strs[0].length; i++){
-        console.log('i: ', i);
-        let c = strs[0].charAt(i);
-        for (let j = 1; j < strs.length; j++) {
-            if (i == strs[j].length || strs[j].charAt(i) != c) {
-                
-                return strs[0].substring(0, i);
-            }
-        }
+  if (strs.length === 0) {
+    return "";
+  }
+  let prefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
     }
-    return strs[0];
-  };
+  }
+
+  return prefix;
+};
+
+// /* Leetcode solution 2: - Not better time complexity than solution 1 */
+// var longestCommonPrefix = function (strs) {
+//     if (strs == null || strs.length == 0) return "";
+//     for (let i = 0; i < strs[0].length; i++){
+//         console.log('i: ', i);
+//         let c = strs[0].charAt(i);
+//         for (let j = 1; j < strs.length; j++) {
+//             if (i == strs[j].length || strs[j].charAt(i) != c) {
+
+//                 return strs[0].substring(0, i);
+//             }
+//         }
+//     }
+//     return strs[0];
+//   };
+
+/* GoodTecher solution */
+/* Pseudocode:
+- Have an edge case conditional of if strs is null or length is less than or equal to 0 then return empty string ''
+- Declare a variable called lcp and set it equal to first string element from strs array
+- Loop through the strs array starting at index 1 (2nd string element from strs array) because the 1st string is already
+taken up by lcp variable, 
+   - Set a variable called currentString to current string element at current index of array just to make things more
+   clear and easier for us
+   - Declare a variable called j and set it equal to 0 for now.
+   - Have a while loop of while j is less than length of lcp && j is less than length of currentString (to only go through
+    shortest string) && character at current j index is same between lcp and currentString then increment j by 1
+    - Outside while loop, re-set lcp to substring of lcp from index 0 ending at j index 
+    - And if j is still equal to 0 (No common prefix substring) then just return empty string ''
+- Outside for loop, return lcp
+
+ */
+
+var longestCommonPrefix = function (strs) {
+  if (strs == null || strs.length <= 0) {
+    return "";
+  }
+
+  let lcp = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    let currentString = strs[i];
+    let j = 0;
+
+    while ( j < currentString.length && j < lcp.length && currentString[j] === lcp[j] ) {
+      j++;
+    }
+    if (j === 0) {
+      return "";
+    }
+    lcp = lcp.substring(0, j);
+  }
+
+  return lcp;
+};
+
 // console.log("1: ", longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
-console.log("2: ", longestCommonPrefix(["flight", "flow", "flower"])); // 'fl'
+// console.log("2: ", longestCommonPrefix(["flight", "flow", "flower"])); // 'fl'
 // console.log("3: ", longestCommonPrefix(["dog", "racecar", "car"])); // ''
 // console.log("4: ", longestCommonPrefix(["flow", "flower", "flight"])); // 'fl'
 // console.log("5: ", longestCommonPrefix(["flower", "flowering", "flight"])); // 'fl'
