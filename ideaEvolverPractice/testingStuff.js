@@ -116,7 +116,12 @@
 // console.log('expected: ', expected.length);
 
 /* Longest common Prefix */
-let lastCommonStr = ''
-console.log('lastCommonStr: ' , lastCommonStr );
-lastCommonStr += '';
-console.log('lastCommonStr: ' , lastCommonStr );
+// let lastCommonStr = ''
+// console.log('lastCommonStr: ' , lastCommonStr );
+// lastCommonStr += '';
+// console.log('lastCommonStr: ' , lastCommonStr );
+
+/* Longest Palindromic substring */
+var arr = ['cats', 'giants', 'daughters', 'ice'];
+var min = Math.min.apply(Math, arr.map(function(str) { return str.length; }));
+console.log(min); // 3

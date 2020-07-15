@@ -43,9 +43,6 @@ let isPalindrome = (str) => {
   return true;
 };
 
-// console.log(isPalindrome('geeksskeeg')); // true
-// console.log(isPalindrome('babad')); // false
-
 var longestPalindrome = function (s) {
   s = s.toLocaleLowerCase();
   let finalArr = [];
@@ -55,7 +52,6 @@ var longestPalindrome = function (s) {
     return "";
   }
   if (s.length === 1 || (s.length === 2 && s[0] !== s[1])) {
-    // return s[0];
     return finalArr[0];
   }
 
@@ -63,23 +59,6 @@ var longestPalindrome = function (s) {
   let end = s.length - 1;
 
   while (start < end) {
-    // while (s[start] !== s[end] && start + 1 < end) {
-    //   end--;
-    // }
-
-    // if (s[start] !== s[end]) {
-    //   start++;
-    //   end = s.length - 1;
-    // } else {
-    //   if (isPalindrome(s.substring(start, end + 1))) {
-    //     finalArr.push(s.substring(start, end + 1));
-    //     // return s.substring(start, end + 1);
-    //     start++;
-    //   } else {
-    //       end--;
-    //   }
-    // };
-
     while (s[start] !== s[end]) {
       end--;
     }
@@ -106,8 +85,6 @@ var longestPalindrome = function (s) {
       longestStr = finalArr[i];
     }
   }
-
-  // console.log('longestStr: ', longestStr);
   return longestStr;
 };
 
