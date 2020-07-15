@@ -56,33 +56,33 @@ exist then return false
 - Otherwise, if character in t is in sHash Object then decrement the value by 1 
  */
 
-// var isAnagram = function (s, t) {
-//   if (s.length !== t.length) {
-//     return false;
-//   }
+var isAnagram = function (s, t) {
+  if (s.length !== t.length) {
+    return false;
+  }
 
-//   let sHash = {};
+  let sHash = {};
 
-//   // Loop through first input string s, and put each character as a key in an object, sHash with the
-//   // values being the count of each character that appears in string
-//   for (let letter of s) {
-//     if (!sHash[letter]) {
-//       sHash[letter] = 1;
-//     } else {
-//       sHash[letter]++;
-//     }
-//   }
+  // Loop through first input string s, and put each character as a key in an object, sHash with the
+  // values being the count of each character that appears in string
+  for (let letter of s) {
+    if (!sHash[letter]) {
+      sHash[letter] = 1;
+    } else {
+      sHash[letter]++;
+    }
+  }
 
-//   for (let letter of t) {
-//     if (!sHash[letter]) {
-//       return false;
-//     } else {
-//       sHash[letter]--;
-//     }
-//   }
+  for (let letter of t) {
+    if (!sHash[letter]) {
+      return false;
+    } else {
+      sHash[letter]--;
+    }
+  }
 
-//   return true;
-// };
+  return true;
+};
 
 
 // console.log("1: ", isAnagram("anagram", "nagaram")); // true
