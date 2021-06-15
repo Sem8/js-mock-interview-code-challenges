@@ -105,3 +105,57 @@ var removeDuplicates = function (nums) {
 
 console.log(removeDuplicates([1, 1, 2])); // arr = [1, 2] ; answer: 2 (length)
 console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])); // arr = [0, 1, 2, 3, 4] ; answer: 5 (length)
+
+
+// 
+/*
+Given a string containing just the characters '(', ')' ,determine if the input string is valid.
+
+An input string is valid if:
+
+Any left parenthesis '(' must have a corresponding right parenthesis ')'.
+Any right parenthesis ')' must have a corresponding left parenthesis '('.
+Left parenthesis '(' must go before the corresponding right parenthesis ')'.
+
+Example 1:
+
+Input: "()"
+Output: true
+
+Example 2:
+
+Input: "()()()"
+Output: true
+
+Example 3:
+
+Input: "(()"
+Output: false
+
+Example 4:
+
+Input: "((()))"
+Output: true
+
+Example 5:
+
+Input: ")()("
+Output: false
+
+Additional characters '{', '}', '[' and ']',
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
+
+*/
+
+/*
+- First check, if the length of the string is odd then automatically return false
+- Have an object to store key as open and closed parentheses and incrment count 
+every time we encounter open parentheses and decreement count for closed parenthesis
+- *** Edge case: if it starts with closed parenthesis?
+
+// in the for loop, 
+
+*/
+

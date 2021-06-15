@@ -12,14 +12,19 @@ after the 1st letter index of the str using substr method and passing in 1 as th
 letter to the next for each recursive call) plus first letter of current str at index 0.
  */
 
-const reverseStrRecursive = str => {
+const reverseStrRecursive = (str) => {
+  if (str === "" || str === null) {
+    return "";
+  }
+  return reverseStrRecursive(str.substr(1)) + str[0];
+};
 
-    if (str === '' || str === null) {
-        return '';
-    }    
-    return reverseStrRecursive(str.substr(1)) + str[0];
-    
-}
+// const reverseStrRecursive = (str) => {
+//   if (str === "") {
+//     return str;
+//   } else {
+//     return reverseStrRecursive(str.slice(1)) + str[0];
+//   }
+// };
 
-console.log(reverseStrRecursive('cat')) // 'tac'
-
+console.log(reverseStrRecursive("cat")); // 'tac'
